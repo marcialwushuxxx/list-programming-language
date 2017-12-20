@@ -4,10 +4,10 @@
 
 Porque não existe um esquema de classificação abrangente para linguagens de programação, em muitos casos, uma linguagem será listada em vários tipos.
 
-- [Array languages](Array languages.md)
-- [Assembly languages](Assembly languages.md)
-- [Audio programming languages](Audio programming languages.md)
-- [Authoring languages](Authoring languages.md)
+- [Array languages](Array-languages.md)
+- [Assembly languages](Assembly-languages.md)
+- [Audio programming languages](Audio-programming-languages.md)
+- [Authoring languages](Authoring-languages.md)
 - [BASIC dialects]()
 - [C-family programming languages]()
 - [Chinese programming languages]()
