@@ -1,24 +1,57 @@
-# Array programming languages
+# [Array programming languages](https://en.wikipedia.org/wiki/Category:Array_programming_languages)
 
 - A+
+- ADMB
+- Ana (programming language)
 - Analytica
 - APL
+- APLX
 - Chapel
+- ELI (programming language)
+- Extempore (software)
+- F-Script (programming language)
 - Fortran
+- Fortress (programming language)
 - Freemat
 - Futhark
 - GAUSS
+- Genius (mathematics software)
+- GNU Octave
+- IDL (programming language)
+- ILNumerics
 - J
+- JLab
 - Julia
 - K
+- LYaPAS
 - MATLAB
+- MEX file
+- ND4J (software)
+- ND4S
+- NESL
+- NGL (programming language)
+- Nial
+- NumPy
 - Octave
-- Q
+- O-Matrix
+- Perl Data Language
+- Q (programming language from Kx Systems)
 - R
+- Renjin
+- Rlab
 - S
 - S-Lang
+- SA-C (programming language)
+- SAC programming language
+- Scilab
+- Set theoretic programming
+- Speakeasy (computational environment)
+- SuperCollider
+- Sysquake
 - SequenceL
+- Vector Pascal
 - X10
 - ZPL
 - IDL
+- Yorick (programming language)
 - Wolfram Language
