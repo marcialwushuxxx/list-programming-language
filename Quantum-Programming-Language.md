@@ -1,4 +1,4 @@
-# Quantum Programming Language
+# [Quantum Programming Language](https://www.quantiki.org/wiki/quantum-programming-language)
 
 Quantum Programming Language é uma linguagem de programação, que pode ser usada para escrever programas para computação quântica.
 
@@ -7,3 +7,5 @@ Uma vez que toda máquina quântica deve ser controlada por dispositivo clássic
 - [Imperative quantum programming]()
 
 - [Functional quantum programming]()
+
+- [List of QC simulators](List-of-QC-simulators.md)
