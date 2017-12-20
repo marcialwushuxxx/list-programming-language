@@ -1,0 +1,24 @@
+# Array programming languages
+
+- A+
+- Analytica
+- APL
+- Chapel
+- Fortran
+- Freemat
+- Futhark
+- GAUSS
+- J
+- Julia
+- K
+- MATLAB
+- Octave
+- Q
+- R
+- S
+- S-Lang
+- SequenceL
+- X10
+- ZPL
+- IDL
+- Wolfram Language
