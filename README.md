@@ -1,6 +1,6 @@
 # List of programming languages
 
-**Esta é uma lista de linguagens de programação, agrupadas por tipo**.
+**Esta é uma lista de linguagens de programação e marcação, agrupadas por tipo**.
 
 Porque não existe um esquema de classificação abrangente para linguagens de programação, em muitos casos, uma linguagem será listada em vários tipos.
 
@@ -45,11 +45,13 @@ Porque não existe um esquema de classificação abrangente para linguagens de p
     - [Languages with manual memory management]()
 - [List-based languages – LISPs]()
 - [Little languages]()
+- [List of JVM languages]()
 - [Logic-based languages]()
 - [Machine languages]()
 - [Macro languages]()
     - [Textual substitution macro languages]()
     - [Application macro languages]()
+- [Markup languages]()
 - [Metaprogramming languages]()
 - [Multiparadigm languages]()
 - [Numerical analysis]()
@@ -66,6 +68,7 @@ Porque não existe um esquema de classificação abrangente para linguagens de p
 - [Rule-based languages]()
 - [Scripting languages]()
 - [Stack-based languages]()
+- [Stylesheet languages]()
 - [Synchronous languages]()
 - [Syntax handling languages]()
 - [Transformation languages]()
