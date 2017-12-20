@@ -4,8 +4,12 @@ Quantum Programming Language é uma linguagem de programação, que pode ser usa
 
 Uma vez que toda máquina quântica deve ser controlada por dispositivo clássico, as linguagens de programação quântica existentes incorporam estruturas de controle clássicas, como loops e execução condicional e permitem operar em dados clássicos e quânticos.
 
-- [Imperative quantum programming]()
+- [Quantum instruction sets](Quantum-instruction-sets.md)
 
-- [Functional quantum programming]()
+- [Imperative quantum programming](Imperative-quantum-programming.md)
+
+- [Functional quantum programming](Functional-quantum-programming.md)
+
+- [Multi-Paradigm languages](Multi-Paradigm-languages.md)
 
 - [List of QC simulators](List-of-QC-simulators.md)
