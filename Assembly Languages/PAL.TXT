@@ -1,0 +1,3762 @@
+                               PRO-LINE SOFTWARE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    PAL 64TM
+                                        
+                 Toolkit for machine code programmers includes:
+                                 supermon 64   
+                                 unassembler 64
+                                 palverter64   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                         PAL 64 Manual
+
+
+                                    PAL 64TM
+
+
+
+
+
+
+
+
+
+
+         Programmed for the Commodore 64 Computer and Commodore 1541
+         Disk Drive.
+
+         Program by: Brad Templeton
+
+         Manual by:  Brad Templeton
+
+
+
+         Manufactured and distributed exclusively by:
+
+         Pro-Line Software Ltd.,
+         755 The Queensway East, Unit 8,
+         Mississauga, Ontario, L4Y 4C5.
+         (416) 273-6350
+
+
+         Programs Copyright (c) 1983 Brad Templeton
+         Manual   Copyright (c) 1983 Brad Templeton
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             PRO-LINE SOFTWARE LTD.           83-08-03
+
+
+                                                         PAL 64 Manual
+
+
+                                        
+                                        
+                               TABLE OF CONTENTS
+
+
+         1.  Introduction to PAL 64.
+
+         2.  Basics of Using PAL.
+
+         3.  Source Line Format.
+
+         4.  Expressions.
+
+         5.  Pseudo-ops.
+
+         6.  Error Messages.
+
+         7.  More Notes.
+
+             APPENDIX A: PAL Environment.
+
+             APPENDIX B: Internal Routine Vectors.
+
+             APPENDIX C: PAL Memory Maps.
+
+             APPENDIX D: Converting CBM/MOS Assembler to PAL.
+
+             APPENDIX E: Extra Files.
+
+             APPENDIX F: The Relocatable Object PAL.
+
+             APPENDIX G: The PAL Relocating Loader.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             PRO-LINE SOFTWARE LTD.           83-08-03
+
+
+         PAL 64 Manual                                 1. Introduction
+
+
+                                        
+                           Personal Assembly Language
+                                        
+
+         1.  Introduction
+
+              PAL stands for Personal Assembly Language.  It is a
+         program that takes a program written in symbolic format and
+         converts it to machine code that the 6510 processor in the
+         CBM 64 can execute.  Such a program is called an assembler.
+         To use PAL 64, you should have some familiarity with the
+         machine language of the 6510.  You should know what
+         instructions it can perform, what ways it can address its
+         data, and the general principles of its operation.  Machine
+         language programming is quite different from other sorts of
+         programming, such as you might do in BASIC.  You have to tell
+         the processor exactly what to do, using statements that play
+         around with data in its simplest form, manipulating machine
+         registers individually.
+
+              Naturally, there are advantages to knowing how to do
+         this.  For one, programs written in machine language run much
+         faster than those written any other way.  They can often also
+         be made more compact than BASIC programs, even though they
+         run all on their own without an interpreter.  In addition,
+         there are some things you want to do that just can't be done
+         in BASIC, such as playing with Interrupts.  The new world
+         opened up makes the work to understand machine language worth
+         it by far.
+
+              What is called machine language is just the string of
+         bytes that the processor executes.  This is not easily read
+         by a human, nor is it easily manipulated or written by one.
+         To help in this task, an assembler, like PAL, comes in.  PAL
+         lets you write a program in a symbolic fashion.  You use
+         mnemonics to represent the operations the processor can do.
+         You get to specify the addressing modes of the processor in a
+         symbolic way.  Best of all, you can assign values to symbols
+         so that programs are more readable and can be modified much
+         more easily.  The essential purpose of an assembler is to
+         help you abstract your program from the actual bytes as much
+         as possible without taking away the ability to do intimate
+         tinkering with the hardware of the machine.  An assembler
+         takes an abstract program, called the source, and turns it
+         into a machine program, called the object.  A line of the
+         form "LDA #10" gets turned into the string of bits
+         "1010100100001010".
+
+              You may have run into several assembler programs in your
+         experience with computers.  There are others for other
+         Commodore computers, such as the one produced by Commodore
+         itself.  These differ from PAL in ways that will be described
+         below.  In addition, you may have heard of macro assemblers.
+         These are programs that include some form of what is called a
+         macro package.  Macros allow you to abstract your program
+         even more by allowing you to define statements that imply
+         large and complex text substitutions based on arguments
+         provided to the macro statement.  PAL does not as yet provide
+
+
+                                     Page 1                           
+
+
+         PAL 64 Manual                                 1. Introduction
+
+
+         such a feature.  There are several reasons for this, one of
+         which is that PAL 64 fits in just over 4K bytes of 6510
+         machine language code.  Macros are a complex feature and
+         could not easily be supported in such a small amount of
+         memory.  PAL 64 is of the size that it can easily be burned
+         into a single ROM chip that may be adapted to the CBM 64
+         cartridge port and reside there at all times.
+
+         1.1  Features of Note
+
+              What PAL 64 provides that many other assemblers do not
+         is a high level of convenience.  First of all, it fits in
+         just over 4096 bytes of memory as described above.  It can
+         quietly sit in your machine, taking up only this small amount
+         of memory.  It can also be put together with POWER 64 in one
+         8K block of memory, which allows it to be put with that
+         program in a cartridge that plugs in the back of the machine.
+         With this version, you never have to worry about loading it
+         from disk or losing it.  PAL 64 was designed to fit in as
+         much as possible with the BASIC environment that the CBM 64
+         owners know so well.  Because of this, it is hoped that new
+         assembler programmers will be able to use PAL to move into
+         the world of assembler programming from BASIC more easily.
+         Many of the operations involved with using PAL are the very
+         same operations that are used by BASIC programmers.
+
+              PAL achieves this similarity with BASIC by using the
+         BASIC program format for its source files.  PAL program lines
+         are typed in and worked with in exactly the same way that
+         BASIC programs are worked with.  This means that you use the
+         line numbered editor of BASIC to enter and change your
+         program.  You use the BASIC SAVE and LOAD commands to store
+         your programs on disk or tape.  In addition, you can use
+         packages that enhance the editing power of BASIC to help you
+         with your program.  I suggest you use the package known as
+         POWER 64 published by Pro-Line Software Ltd. of Mississauga,
+         Ont.  This package was written by myself, and is used
+         together with PAL 64 for all my 6510 software development.
+         Of course, you can use any such package to develop your
+         programs.  You should use whatever you are comfortable with.
+         POWER 64 does have one feature to help PAL 64 users that will
+         be detailed later.
+
+              PAL assemblies are accomplished just by typing RUN when
+         you have a PAL source file in the machine.  As you know, a
+         RUN command starts up a BASIC program - so how does one get
+         this to start an assembly?  The answer is to make the first
+         line of your program a BASIC statement to start the
+         assembler.  This is the SYS statement that you will grow to
+         know and love as you your experience with assembler.  PAL
+         will sit in your CBM 64's memory at some location.  Most
+         commonly this is around address 9000 hexadecimal, sitting
+         right at the top of memory.  Since the place PAL loads
+         depends on your memory configuration, PAL stores where it is
+         located when you load it from the disk.  The new address is
+         put in what is called a vector in what machine language
+         programmers refer to as page 2 of machine memory.  The magic
+         number you need to know is 700.  To get PAL to run when you
+
+
+                                     Page 2                           
+
+
+         PAL 64 Manual                                 1. Introduction
+
+
+         say RUN, you simply make the first line of you program a SYS
+         to call PAL.  For example, no matter where PAL is loaded you
+         might have something like:
+
+                   10 SYS 700
+
+         with this system, you can assemble your program just by
+         typing RUN.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     Page 3                           
+
+
+         PAL 64 Manual                          2. Basics of Using PAL
+
+
+
+         2.  Basics of Using PAL
+
+              Before you learn anything more about PAL, you should
+         know how to load it and play with it.  As you will read
+         later, there is a version of PAL that allows you to generate
+         machine programs that will load anywhere in memory.  This
+         version has been used to generate the PAL that is on your
+         disk.  If you look at your disk directory, you will find a
+         number of different files on it.  The first will be called
+         "PAL".
+
+              To load in a copy of the assembler to use, just load
+         that file into memory and type RUN.  This will load a 4.1K
+         copy of PAL at the very top o memory in your CBM 64.  The top
+         of memory is defined by two bytes in zero page at locations
+         55 & 56(decimal).  If these bytes contain the value $A000,
+         then PAL will load starting at just below $9000 and the
+         pointer will be moved down to point there.  This means that
+         BASIC will not touch PAL any more, since it thinks physical
+         memory ends where that pointer says it does.  Most other
+         programs are the same way.
+
+              After the program is loaded, it is executed.  Since it
+         was not called from within a BASIC program, PAL does nothing
+         but print some data.  You will also see a copyright notice
+         and some numbers that are currently meaningless to you.  You
+         now have PAL in your machine.
+
+              It should be noted that every time PAL executes, it
+         alters the top of memory pointer to point to itself.  This
+         means that when you load in you fresh copy of PAL, you can
+         sys to the first location in it and have your copy of PAL
+         sealed away at the top of memory, safe from BASIC.  PAL will
+         never alter the top of memory pointer to something higher
+         than it already is, however, so if you combine PAL with other
+         programs that sit at the top of the CBM 64 memory, like a
+         fancy monitor, executing PAL will not unseal these programs.
+         The same is true if you put PAL in rom.  After loading PAL,
+         it may be necessary to do a new or POWER FIX to restore some
+         of BASIC's pointers.  This is common in the loading of
+         machine language programs.
+
+         2.1  Special Loading Problems
+
+              You may want to load PAL in some special way not
+         provided for by the "PAL" file.  For this purpose, a file
+         with the relocatable object is included on your disk.  It's
+         name is "PAL.R" where the .R stands for relocatable.  You can
+         load PAL anywhere you like, using the "FLOADER" program found
+         on your disk.  See the section on the relocatable output
+         version of PAL for details on how to use the FLOADER.  You
+         will need to use it, for example, if you want to make a
+         version of PAL you can load directly or one that goes into
+         EPROM.  You should note that such a version of PAL does not
+         run from its first address and will not store the right
+         address at 700.  You will have to set up something to do
+         this.  PAL is pure code, ie. it does not modify itself, so it
+
+
+                                     Page 4                           
+
+
+         PAL 64 Manual                          2. Basics of Using PAL
+
+
+         can be safely burned into ROM.  If you make a version of PAL
+         that loads without relocating, you should note the following:
+
+              Every time PAL executes, it alters the top of memory
+         pointer to point to itself.  This means that when you load in
+         your fresh copy of PAL, you can SYS to the first location in
+         it and have your copy of PAL sealed away at the top of
+         memory, safe from BASIC.  PAL will never alter the top of
+         memory pointer to something higher than it already is,
+         however, so if you combine PAL with other programs that sit
+         at the top of the CBM 64 memory, like a fancy monitor,
+         executing PAL will not unseal these programs.  After loading
+         PAL, it may be necessary to do a NEW or POWER FIX to restore
+         some of BASIC'S pointers.  This is common in the loading of
+         machine language programs.
+
+         2.2  A Simple Assembly
+
+              To see how PAL works, try a sample program.  First load
+         in PAL as described above.  Now type NEW to make BASIC ready
+         for a new program.  If you have loaded PAL from a pre-saved
+         version you made yourself, and done it with the machine
+         language monitor, you need not type NEW.  If you have POWER
+         in place, you can use the PTR command instead.
+
+              Now type in the following sample program.  Note that the
+         SYS line at the beginning of the file is what calls the
+         assembler.  No matter where PAL is loaded, this is the
+         address you will use to call it.
+
+                 10 SYS 700
+                 20 .OPT P,OO
+                 22 ;SAMPLE TEST PROGRAM
+                 25 *=$C000
+                 30 LDX #0
+                 40 LOOP LDA 0,X ;GET BYTE FROM ZERO PAGE
+                 50 STA $400,X   ;STORE IT IN SCREEN MEMORY
+                 60 INX
+                 70 BNE LOOP
+                 80 RTS
+
+              The above simple program transfers 256 bytes of memory
+         from zero page to the screen.  You can see it loading the
+         accumulator with a byte from zero page indexed with the X
+         register, and storing that same byte into screen memory,
+         which begins at $400 on the CBM 64.  After the store, it
+         bumps the X register with "INX" and tests if the register has
+         looped up to zero again.  If it has, it returns with the RTS.
+         If you did not understand this simple program, you should
+         consider going back and reading some more about the 6510
+         processor.
+
+              Some things you might want to note about the listing.
+         First, as pointed out before, it is just like a BASIC
+         listing, except we're dealing with assembler here.  Secondly,
+         it is free format.  There is no indentation like you might
+         see in a normal assembler listing.  The statement on line 40,
+         which has a label called "LOOP" is indented no differently
+
+
+                                     Page 5                           
+
+
+         PAL 64 Manual                          2. Basics of Using PAL
+
+
+         from the others.  Thirdly, the statement on line 20 starts
+         with a dot, and looks like no assembler mnemonic in the 6510
+         set.  What does this all mean?
+
+              As you have learned, PAL files are just like BASIC
+         files.  It is the SYS at the beginning that makes them
+         special.  Otherwise, PAL follows fairly closely what is
+         called the "MOS Assembler Standard".  MOS is the company that
+         first make the 6510.  Along with the chip, they defined a
+         standard of what an assembler program for the 6510 should
+         look like.  This included listing all the mnemonics and
+         giving a syntax for expressions and all the addressing modes.
+         In addition, some special operations, called "pseudo-ops" or
+         "directives" are defined.  These are not machine
+         instructions, but rather instructions to the assembler.  You
+         use them to work with symbols and to do all sorts of special
+         things that don't generate machine instructions.
+
+              This MOS assembler standard is the one you will most
+         commonly see in books on the 6510.  Many assemblers do not
+         adhere to this standard, however.  Peter Jennings'
+         Micro-Adetm, which was the assembler that the first version
+         of PAL was written in, (PAL now assembles itself, of course)
+         takes a very different syntax.  MAEtm by Carl Moser is not as
+         different as "Micro-Ade", but differs quite a bit on some
+         matters.  The assembler put out by Commodore itself is quite
+         close to the standard, since MOS is owned by Commodore and
+         they defined it.  PAL is also quite close to that standard.
+         in reality, it accepts far more things than are defined
+         there, and so can be considered a superset.  There are some
+         things in the standard that PAL does not handle, and these
+         are described in Appendix D.  This means, however, that with
+         a minimum of work, you should be able to take a MOS standard
+         program and assemble it with PAL.
+
+              One of the rules n this MOS standard is that assembler
+         files should be free form.  No indentation is required to
+         distinguish things.  PAL figures out if the line is a machine
+         operation, a statement with a label, or one of its own
+         pseudo-ops.  PAL knows a statement has no label if the first
+         word on the line is one of the 56 mnemonics in the 6510 set.
+         This means that you cannot use a mnemonic name like "LDA" for
+         a label.  If a statement begins with a word that is not a
+         mnemonic, it is assumed that it is a label.  Words that begin
+         with dots or special symbols are expected to be pseudo-ops,
+         however since a label must begin with a letter.
+
+              PAL goes beyond this in allowing free form, however.  In
+         PAL, you can pad your statement with spaces to make it look
+         nicer as you please.  You can put as many spaces you like
+         between operators, mnemonics and operands, just as you can in
+         BASIC.  You must have a space between major parts of a
+         statement, like between a label and the opcode, and between
+         the opcode ant the operand, but otherwise you may pack things
+         together as you please.
+
+              The line at the top, ".OPT P,OO", is a pseudo-op.  In
+         this case, it gives output options to the assembler.  The P
+
+
+                                     Page 6                           
+
+
+         PAL 64 Manual                          2. Basics of Using PAL
+
+
+         means you would like a printout of the program, and the OO
+         means you would like the machine or "object" code of the
+         program put where it is "origined".  This just means that the
+         program will be put right into memory where it is supposed to
+         run.  If you recall from your 6510 readings, the line
+         "*=$C000" sets this "origin" to be address $C000 (PC defaults
+         to here when origin not specified).  In general, "*=" is a
+         pseudo-op that sets the assembler's "program counter".  You
+         will learn more about it later.
+
+              Now that you understand a little about the program, you
+         are ready to try it.  Type "RUN".  You should instantly see a
+         listing of the program in a big fancy format.  At the bottom
+         will be a line of the form "]C000-C00B" which indicates the
+         object code runs from address $C000 to $C00A  (The last
+         number is always one more than the last byte, and is the one
+         you should use in saving the program with a machine language
+         monitor).  If you got any error messages, you should check to
+         make sure you have entered the program correctly.
+
+              The listing you get is quite a bit more voluminous than
+         the program you typed in.  For one thing, you can see that it
+         is all neatly indented and formatted the way a program
+         listing you see in a book is.  PAL has taken your free format
+         program and put it out in a more readable format.  At the
+         beginning of each line, you can see the BASIC line number
+         that the statement came from followed by a colon.  This is
+         for your reference, so you can see where in the program our
+         listing comes from.  This is followed by the hexadecimal
+         address of the code for that statement.  This is what is
+         referred to as the "program counter" of the assembler.  The
+         "*=$C000" set the program counter, and you should see that
+         number as the first one at the top of the program.
+
+              The address is followed by the bytes (in hex) generated
+         by that statement.  This is the actual machine code that the
+         assembler produced.  Up to three bytes are shown.  After
+         these bytes is an area for any label put on a statement.  in
+         your program, most lines will have this area blank, except
+         for one, which has the label LOOP in it.  After the label
+         comes the opcode or pseudo-op of the instruction, such as the
+         "STA" on line 50.  Two spaces after this comes the operand
+         for that statement.  Further on, you find the comment if
+         there is one.  You will also note one exception to this
+         listing format, and that is the line with only a comment on
+         it.  Comments, as you can see, begin with a semicolon.  In
+         this case, a line with only a comment on it is listed as just
+         that comment with no other information.  The comment begins
+         in the label field.
+
+              Now that you have seen the listing, you can try the
+         program.  If you have  a dissassembler, such as that in
+         "SUPERMON" which is included on the PAL disk, you might want
+         to go into it and look at the program at $C000.  Otherwise,
+         just type "SYS12*4096" from BASIC and that will run your
+         program.  You should see a bunch of garbage appear at the top
+         of your screen.  Some of it may be in bright white because
+         you did not copy the color table.  This is zero page.  If
+
+
+                                     Page 7                           
+
+
+         PAL 64 Manual                          2. Basics of Using PAL
+
+
+         this happens, you have done your first PAL assembly.  You are
+         now in a position to try further programs, depending on your
+         knowledge of 6510 assembler.  You might try making changes in
+         the program you have typed in, moving it in memory, or
+         perhaps chaining where on the screen you dump the memory.
+         After you make a change, just type RUN and the program will
+         be assembled.
+
+         2.3  An Assembly
+
+              An actual assembly is a complicated process.  The most
+         important thing you should know about a PAL assembly is that
+         it is what is called "two pass".  This means that PAL reads
+         over the source file two times.  On the first pass, PAL
+         figures out how many bytes each statement will take up in
+         memory.  It does this so that it can figure the location of
+         each statement and set the program counter properly.  All
+         labels are given their value on the first pass.  Certain
+         pseudo-ops, which you will see described later, only operate
+         on the first pass.
+
+              After PAL completes the first pass, it begins to read
+         the source again.  Before it does this, it prints the digit
+         "2" on the output to indicate that the second pass has begun.
+         It is in this pass that PAL actually generates the machine
+         code for the program.  It is also on this pass that PAL
+         prepares any printed listing that is desired.  In the second
+         pass all expressions are evaluated as well.
+
+              Certain error messages occur in each pass, and some
+         occur in both.  You will thus get some error messages twice.
+         See the section on errors to figure out the differences.
+         Some expressions get evaluated on the first pass, so
+         expression errors can occur on any pass.
+
+              When PAL reads in a statement from your program, it goes
+         through the following process.  First, it parses (splits
+         apart) your statement into the major components.  These
+         components are described in the next section.  After it does
+         this, it figures out what kind of op or pseudo-op this line
+         contains.  On the first pass, symbols are assigned.  On the
+         second pass, pseudo-ops are worked through and instructions
+         are decoded.  Expressions are evaluated and the code is
+         generated.  Finally, a listing of the line is given if
+         requested.  If there is an error, a listing of the line is
+         given under any circumstances, and code is generated with a
+         zero in the first byte.  After all this, PAL goes on fetch
+         the next instruction.
+
+              At any time while PAL is running, you can hit the STOP
+         key on your keyboard to abort the assembly.  You should note
+         that you cannot restart the assembly after doing this, and
+         you will have to go back to the beginning.
+
+              On a long assembly, PAL gives you some idea of what  is
+         going on by always printing .FILE statements whether you have
+         asked for printing or not.  This way you can see both what
+         file is being processed, and how many bytes have been
+
+
+                                     Page 8                           
+
+
+         PAL 64 Manual                          2. Basics of Using PAL
+
+
+         assembled so far.  The statement is listed after the file and
+         has been read properly into memory.  See the section on
+         pseudo-ops for more details on .FILE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                     Page 9                           
+
+
+         PAL 64 Manual                           3. Source Line Format
+
+
+
+         3.  Source Line Format
+
+              Let's go into some more detail on the format of a source
+         line to PAL.  A full source line looks like this:
+
+                            LABEL OP OPERAND;COMMENT
+
+              As noted above, the entry is "free form", so typing in
+         stuff is fairly easy.  On the other hand, you might feel that
+         a free format listing is difficult to read and hard to play
+         around with.  It is harder to spot the labels, instructions
+         and comments because they do not all line up like you are
+         used to in a listing.  If you feel this way, you may wish to
+         pretty up your listing with proper indentation of the various
+         parts of the line.  Unfortunately, the CBM 64 BASIC editor
+         will delete any space you put at the beginning of a line.
+         This means if you put spaces before an unlabelled statement
+         to indent it, all the indentation will go away and you are
+         back where you started from.  To help this, PAL will ignore
+         the up arrow character (^) if it is at the beginning of the
+         line.  If you wish to indent a line, just type an up arrow
+         followed by the number of spaces you wish to indent by.
+         Since PAL allows 8 character labels, you probably want an up
+         arrow and 8 spaces.  If you have a package like POWER, you
+         can probably define a key to do this.  To indent the rest of
+         your program, you can include spaces as you desire, since PAL
+         will not be affected by them.
+
+         3.1  Labels
+
+              Any normal PAL statement can have a label.  This will
+         assign that label to the value of the PAL program counter at
+         the beginning of the assemble of that statement.  Normally,
+         you only want to label statements that generate output, like
+         machine instructions and some pseudo-ops.  All statements can
+         be labelled, however.  This label can be as long as you like,
+         and must be terminated by a space.  You should be warned,
+         however, that only the first 8 characters of the label will
+         be recognized in comparison.  This means that the labels
+         "BIGLONGLABEL" and "BIGLONGLIBEL" will be considered the same
+         by PAL.  The first character of a label must be a letter.
+         The following characters may be either a letter or a digit.
+         The label at the beginning of a statement should always be
+         followed by a space to divide it from the remainder of the
+         statement.  As noted previously, a label may not be the same
+         as one of the 56 three letter mnemonics for 6510
+         instructions.  Nor should the label A be used, since this
+         letter can indicate the accumulator addressing mode.
+
+              You should note that you can not have a statement with
+         just a label on it.  Some assemblers allow this, but PAL does
+         not, as i is more likely that a statement consisting of just
+         a string of letters is some kind of accidental mistake.  If
+         you just want to assign a label to the value of the program
+         counter, you can try a statement o the form "LABEL = *".
+         Explanation  of that statement follows later.
+
+
+
+                                    Page 10                           
+
+
+         PAL 64 Manual                           3. Source Line Format
+
+
+         3.2  Opcodes and Operands
+
+              After the label comes the most important part of the
+         statement, called the op.  This can either be a machine
+         opcode or a pseudo-op.  If there were no label on the
+         statement, this would be the first thing on the line.  The op
+         field is short.  All machine opcodes are three letters long,
+         and the pseudo-ops are from one to 5 characters long.
+
+              After the op can come the operand.  Many ops do not take
+         operands, so this may not always be present.  If it is, there
+         must be a space between it and the op.  The operand will
+         usually consist of some syntactic constructs and an
+         expression to give the value of the operand.  PAL expressions
+         can be quite complex, and so the whole next section of the
+         manual is devoted to them.  For initial experiments, you can
+         make your expressions consist of simple things like numbers
+         in decimal and labels.
+
+         3.3  Addressing Modes
+
+              The operand of a machine instruction should usually give
+         the addressing mode you wish to use for that instruction.
+         The 6510 has a wide range of addressing modes which you will
+         find detailed in various books on the subject.  Not all
+         addressing modes can be used with all instructions, so you
+         have to be careful what kind of instructions you use.  PAL
+         will tell you if you try to use an invalid combination by
+         issuing an error message.
+
+              Below the syntaxes for the various addressing modes are
+         given.  Since most operands include an expression with the
+         addressing mode, the characters "expr" are used below to
+         indicate where the expression should go.  For example, if the
+         syntax for "immediate addressing" is given as "#expr", that
+         indicates you statements with immediate addressing should
+         like something like "LDA #5".  The various modes are as
+         follows:
+
+         Syntax   Name                                            Example
+         #expr    Immediate mode addressing                       LDA #10
+         expr     Absolute o relative mode addressing             JSR SUBRU
+         A        Accumulator addressing (shift instructions)     ASL A
+                  A blank operand also gives this.                ROL
+         expr,x   Absolute addressing indexed by the X register   LDA TABLE,X
+         expr,y   Absolute addressing indexed by the Y register   LDA TAB2,Y
+         (expr,x) Zero page addressing indexed by the X           LDA (PTAB,X)
+                  register followed by indirection
+         (expr),y Zero page indirection indexed by the Y register LDA (PTR),Y
+         (expr)   Indirect addressing for JMP instruction only    JMP (VECTOR)
+
+                  In your reading about the 6510, you will have read
+         about zero page addressing modes.  In PAL, you only use
+         absolute addressing modes on your instructions.  PAL will
+         figure out if it can use a zero page instruction in place of
+         the absolute one, and do this if it can.  Normally you need
+         not worry about the problems of zero page addressing.  There
+         are a few pitfalls to watch out for though, and these are
+
+
+                                    Page 11                           
+
+
+         PAL 64 Manual                           3. Source Line Format
+
+
+         described in the section on expressions in the part about
+         "modifiers".  Normally you should have no worries.  Some of
+         the explicitly stated addressing modes, like those involving
+         indirection, must work in zero page.  You should make sure
+         that expressions provided for those modes correspond to the
+         6510 zero page.
+
+              It is also important to note that conversion on an
+         addressing mode to zero page must occur on pass one.  This
+         means that any symbol used in a zero page operand must be
+         defined before it is used.  Otherwise, PAL will think that it
+         has a normal operand on pass one and a zero page operand on
+         pass two.  This will cause a phase error, explained in the
+         error appendix.  Make sure you define all zero page symbols
+         at the front of your program, before you use them.
+
+         3.4  Comments
+
+                  At any point, after the last valid thing in a
+         statement, a comment may come.  You separate the comment from
+         the rest o the statement by a semicolon.  You need not put a
+         space before the semicolon if you desire not to.  As you see
+         in a listing, comments are indented a short space after the
+         operand, and bumped to the right if the operand is long.
+         Your comments will thus line up to some degree, but you also
+         have some control over the matter.
+
+              In addition, you may have noticed you can have a line
+         that has nothing on it but a comment.  Such a line begins
+         with a semicolon and contains a plain text after it.  These
+         lines get special treatment in a PAL listing.  The comment is
+         printed, starting in the label field, with the semicolon in
+         the second column of that field.  You will note that the line
+         does not have a line number or address printed with it.  This
+         helps the comment to stand out in your listing, and means you
+         can put small gaps in your listings with a comment line.
+         Many assembler programmers feel it is good style to leave
+         lots of blank lines in a program to separate out its various
+         parts.  You can do this with comment lines.
+
+              PAL will also handle a blank line.  This will be printed
+         in the listing with no label, opcode or operand.  Normally,
+         it is not possible to put a blank line into a CBM BASIC file,
+         but you can do it with the use of colons.
+
+              You should now have a basic understanding of what a PAL
+         source line looks like.  You can look at some of the sample
+         programs that can be found in this manual and with your copy
+         of PAL.  With this knowledge, you can begin to type in
+         programs using the 6510 instructions you know.  Make sure to
+         have a listing generated when you try things out.  To do
+         this, include the statement:
+
+                                     .OPT P
+
+         at the top of your programs.  Naturally, in the course of
+         your experimentation, you will make some errors.  PAL will
+         spot most of these for you, and print out error messages.
+
+
+                                    Page 12                           
+
+
+         PAL 64 Manual                           3. Source Line Format
+
+
+         There are a number of such messages, all of which are
+         detailed in an appendix.  The most common one you will get is
+         a SYNTAX error.  Hopefully, the error will be obvious enough
+         for you to figure out the problem.  If it is not, you can
+         refer to the section on errors for extra help.
+
+         3.5  Multiple Statements
+
+              There is one more important feature of PAL involving the
+         format of source lines.  If you have used BASIC, you will
+         know that you can put more than one statement on a single
+         line by separating statements with colons.  You can do the
+         same trick in PAL.  If you wanted to use the PLA instruction
+         of the 6510 twice to pop the stack of the machine twice, it
+         is possible to write it as:
+
+              100 PLA
+              110 PLA
+
+         But it is also possible to say:
+
+              100 PLA:PLA
+
+         You can do this with full PAL statement lines too, for
+         example:
+
+              100 BRLAB LDA #23;LINE COUNT:STA LNCNT;SAVE IT
+
+         You see that you can even include a comment on the first
+         statement.  This means, by the way, that you can not normally
+         use the colon character in a comment, as you might make PAL
+         think it is starting a new line.  If you really must have a
+         colon in a comment, you can enclose it in quotes.  Just like
+         BASIC, PAL does not pay attention to special meanings of
+         characters like a colon when they are enclosed in double
+         quotes.
+
+              When you use a colon to put two statements on one line,
+         the two lines still show up in the listing separately.  They
+         will both be given the same line number in the listing, but
+         otherwise there will be no way in the listing to tell they
+         were on the same line.  Normally, using this feature is not
+         encouraged.  It will tend to make your programs more
+         cluttered and difficult to read.  It does save space however,
+         and you may be forced into it.  In addition, it is necessary
+         to use this feature with the .IF pseudo-op which you will
+         read about later.
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 13                           
+
+
+         PAL 64 Manual                                  4. Expressions
+
+
+
+         4.  Expressions
+
+              A good part of the power of PAL resides in its
+         expression evaluator.  This is the part of the program that
+         calculates the values of the instruction operands from the
+         expressions you give.  In some assemblers, you may only
+         specify the value of these operands n a fairly simplistic
+         way.  PAL, in helping you to abstract your program as much as
+         possible, allows you to use complex expressions involving a
+         wide set of operators and operand formats.  BASIC allows you
+         to use expressions in most places that it requires a value.
+         The same is true of PAL.  You must remember, however, that
+         PAL is working with the 16 bit values that an assembler
+         programmer deals with rather than the floating point numbers
+         BASIC uses.  In addition, you should note that the order of
+         evaluation o the terms in a PAL expression is strictly left
+         to right unless parentheses are used, and does not depend on
+         the operator involved.
+
+              Expressions consist of terms and operators.  Terms are
+         essentially values, like numbers.  Operators give operations
+         like addition and subtraction.
+
+         4.1  Term Formats
+
+              A term in a PAL expression can take one of the following
+         forms:
+
+               Decimal - You can use a decimal number, just like in
+                   BASIC.  The number may be anywhere from 0 to 65535.
+                   The number is typed in straight.  For example:
+
+                                         LDA #10
+
+                   loads the accumulator with the decimal value 10.
+                   You can get negative numbers with the unary minus
+                   operator described below.
+
+               Hexadecimal - Many assembler programmers like to work
+                   with numbers in hexadecimal, since it makes it
+                   easier to cope with the binary nature of the
+                   machine.  You can give a hexadecimal number by
+                   preceding it with a dollar sign ($).  You need not
+                   put any leading zeroes on your number if you do not
+                   wish to, as is demanded by the CBM 64 output
+                   routine, you could enter:
+
+                                        JSR $FFD2
+
+                   where FFD2 is the hexadecimal address of the entry
+                   point for that machine language routine.
+
+               Binary - Machines work in binary, and sometimes you
+                   wish to provide your numbers in that format.  This
+                   might be the case if you had to deal with a string
+                   of bits in operations involving AND and OR
+                   instructions.  Quite often you will find that you
+
+
+                                         Page 14                      
+
+
+                   PAL 64 Manual                        4. Expressions
+
+
+                   have to deal with single bits in some of the I/O
+                   hardware of the CBM 64.  You can enter your operand
+                   in binary by preceding it with a percent sign (%).
+                   For example, to OR in a one to the second least
+                   significant bit of the accumulator, you could type:
+
+                                      ORA #%00000010
+
+                   and that would do the job.  The leading zeroes are
+                   not needed at all, they are just there for effect,
+                   since a single byte involves eight bits and we are
+                   dealing with one.  If all this "bit-banging" means
+                   nothing to you, don't worry about it.  When you
+                   begin to work in this area, just remember that you
+                   can provide your values in binary when the need
+                   arises.
+
+               Program Counter - If you want, you can use the value of
+                   the assembler's program counter as the value of a
+                   term.  This can be done if you want to work with an
+                   expression relative to the location your statement
+                   will run in memory.  Use the symbol star (*) for
+                   this.  Star has the value of the assembler program
+                   counter before the current instruction is
+                   processed.  For example, if you wanted to loop
+                   forever, you could code:
+
+                                          JMP *
+
+                   Such a program is not of much use though!  More
+                   commonly, one likes to assign a symbol to the
+                   program counter.  Many programmers, the author
+                   included, like to assign major labels with the
+                   sequence:
+
+                            SUBRTN = *
+                            LDA #10     ;START OF ROUTINE
+
+                   rather than
+
+                            SUBRTN  LDA #10;START OF ROUTINE
+
+                   These two bits of code mean the same thing, but the
+                   first method makes it much easier to insert
+                   instructions at the beginning of the routine.
+                   There are many other uses for star, including
+                   figuring out the lengths of tables.  If you had a
+                   table of values, and wanted a symbol to be equal to
+                   the length of that table, you could say:
+
+                            TABLE    = *
+                        ... values ...
+                            TABLELEN = * - TABLE
+
+                   You will note that we have subtraction and a few
+                   other features here.  You can read more about them
+                   below.
+
+
+
+                                         Page 15                      
+
+
+                   PAL 64 Manual                        4. Expressions
+
+
+               Character - You may want to work with ASCII characters.
+                   Rather than remembering that the CBM 64 printing
+                   code for an "A" is 65, you can just type the
+                   character surrounded by double quotes.  To put an A
+                   in the accumulator, try:
+
+                                         LDA #"A"
+
+                   Use of this is very similar to the use of the ASC
+                   function in BASIC.  Just like the CBM 64, you don't
+                   need to put on the closing quote if there is
+                   nothing else on the line.  It really isn't good
+                   practise to leave it off though
+
+               Label - As you have seen in some cases above, you can
+                   use labels as terms.  the syntax for labels is
+                   given in the section on statement syntax.  Using a
+                   label means using the value you assigned to it by
+                   some means.  You will want to use labels as much as
+                   possible in expressions, since they help you
+                   abstract the program.  If you have any value you
+                   can assign a symbolic name to, it is best to do so,
+                   since it will make your program easier to read.  In
+                   addition, if his value changes, you need only
+                   change it in one place in the program.
+
+               Expression - You can use a complete expression as a
+                   term if you include it in parentheses.  This allows
+                   you to change the order of evaluation when the
+                   value if the expression is calculated.  For
+                   example, "($100+4)" is a valid term.  You will see
+                   more examples of this later.
+
+               Negation - You can use the negative of any term by
+                   placing a negative sign in front of it.  Most
+                   commonly you wish to have the negative of decimal
+                   numbers, but you can negate labels and whole
+                   expressions in parentheses if you want.  Quite
+                   common is something like:
+
+                                           LDA #-1
+
+               User expression - If there is some format you want that
+                   can't be provided by those methods listed above,
+                   you can have PAL call your own routine to calculate
+                   an expression.  You do his by placing an at-sign in
+                   the expression.  You can follow the at-sign with
+                   data to be read by your routine.  An old version of
+                   PAL had it arranged so that you could use a BASIC
+                   expression, with BASIC variables and functions like
+                   PEEK and POKE right on a PAL line.  To do this you
+                   need a fair bit of familiarity with the PAL
+                   operating environment.  That's in an appendix.
+
+         4.2 Operators
+
+              To make expressions, you combine terms with operators.
+         PAL operators are all binary, which is to say they take a
+
+
+                                    Page 16                           
+
+
+         PAL 64 Manual                                  4. Expressions
+
+
+         left and a right operand, just like the operators you know in
+         BASIC.  In PAL, the operators are:
+
+              +   Add values
+              -   Subtract values
+              *   Multiply values
+              !   Boolean OR values
+              &   Boolean AND values
+              ^  Boolean exclusive OR values
+              >   Shift left argument to the right by the number of
+         bits given in the right argument
+              <   As above, but shift left.
+
+              All these operators take 16 bit values, but some of them
+         would be silly to use with large values.  It would be silly
+         to multiply by a number greater than 32767, or to shift by a
+         number greater than 15.  Multiplication that creates a number
+         that can not be held in 16 bits will produce an ILLEGAL
+         QUANTITY error from PAL.  The remaining operators don't give
+         such errors, since overflow is often quite legitimate in the
+         realm of the signed two's complement arithmetic the 6510
+         uses.
+
+              The following examples show that you can combine terms
+         with operators as you please.  You should remember that a PAL
+         expression is evaluated left to right as it is encountered.
+         For example, the result of "5+4*3" in PAL is 27, since the
+         expression is evaluated as "(5+4)*3".  In BASIC, the value
+         would be 17.  If you had wanted the order that BASIC gives,
+         you could have tried "5+(4*3)", since the parentheses alter
+         the order of evaluation.
+
+              You may have noted that certain 6510 addressing modes
+         are expressed by putting the expression in parentheses.  This
+         might cause a conflict with the parentheses used to change
+         the order of evaluation in an expression.  Fortunately, since
+         PAL evaluates left to right, you need never begin an
+         expression with an open parentheses.  The ordering you might
+         obtain from doing this is already the natural ordering PAL
+         gives you.
+
+         4.3  Modifiers
+
+              Quite often you wish to do some special things to an
+         expression to make it fit what the 6510 wants for an operand.
+         Quite often, for example, if an instruction takes a one byte
+         operand, you might wish the upper (most significant) byte or
+         the lower (least significant) byte.  It is quite common to do
+         this when manipulating the 16 bit registers; you have to do
+         them one byte at a time.
+
+              To help you do this, PAL expressions can have modifiers
+         placed upon them.  There are three modifier characters: "<",
+         ">", and "!".  These characters can only be placed at the
+         from of a complete expression that is to become am operand -
+         you can not place them on subexpressions in parentheses.
+
+              The "<" modifier makes the result of the expression the
+
+
+                                    Page 17                           
+
+
+         PAL 64 Manual                                  4. Expressions
+
+
+         lower byte or "half" of the 16 bit value generated.  In many
+         ways, "<expr" is identical to "expr&$ff".  Not quite
+         identical - see the section on relocatable output PAL.  The
+         ">" modifier works like "<" but gives you the upper byte or
+         half of the 16 bit value.  Using ">expr" is similar to
+         "expr>8", which shifts the expression right eight bits.  You
+         will find use of these operators quite common, normally with
+         immediate mode addressing and with certain pseudo-ops.
+
+         4.3.1  Forcing Absolute Addressing
+
+              As mentioned above, PAL will turn the addressing mode of
+         an instruction into a zero page mode if it can.  In rare
+         cases, this could have bad consequences.  Normally a shift to
+         a zero page mode causes no harm to the program, since the
+         operation performed by the zero page instruction is the same
+         as that of the absolute instruction.  The exception is in the
+         case of indexed addressing modes.  The zero page indexed
+         modes pretend that the machine only has an eight bit address
+         space - that is to say, 256 bytes.  This means that if you
+         take the zero page base 250, and index it off with, say, a
+         register containing the value 20, you will address the byte
+         at location 14 rather than the one at 270.
+
+              You might run into this problem inadvertently with a
+         sequence like:
+
+                  TABLE  =    $100
+                         LDA  TABLE-1,X
+
+         PAL will generate a zero page instruction here, which is
+         probably not at all what you want.  You can force PAL to use
+         absolute addressing modes by putting the "!" modifier on your
+         expression.  In this case:
+
+                         LDA !TABLE-1,X
+
+         will give the desired result.
+
+         4.4  Sample Expressions
+
+              Here are some sample PAL lines with expressions to show
+         some of the uses of the expression evaluator.  The program
+         doesn't do anything.
+
+           START  LDA  TABLE-1+(TABLEN*2)
+                  STA  $8000
+                  LDA  #>START-1
+                  LDA  #SIZE>3;SHIFT RIGHT 3 MEANS DIVIDE BY 8
+                  LDA  #-12
+                  CMP  #12 ^ $FFFF + 1;SHOULD BE SAME AS -12
+                  SBC  #"A"-"O";DIFFERENCE BETWEEN A AND O
+                  LDA  TABLE+(ENTRY*ENTSIZE)+OFFSET;A TABLE ENTRY
+                  STA  SCREEN+(LINELEN*LINE)+COLUMN;A SCREEN POSITION
+           CODELEN  =  * - START;HOW MUCH CODE SO FAR
+                  LDA  #<CODELEN
+                  LDY  #>CODELEN;PUT HALVES IN REGISTERS
+                  JSR  FANCY;SUBROUTINE
+
+
+                                    Page 18                           
+
+
+         PAL 64 Manual                                  4. Expressions
+
+
+           STRING .ASC "YOUR NAME HERE"
+           STRLEN   =  * - STRING
+
+         4.5  Uses and Errors
+
+              You now should have some idea of how to form a PAL
+         expression.  You can use the complete power of the expression
+         evaluator in the operand of any expression.  In addition, you
+         will read about several other places where an expression can
+         be used.  Be sure to take full advantage of this ability.
+         Never calculate out the value of an expression by hand and
+         fill it in for PAL.  If you do this, you'll just have more
+         work figuring out what to do if one of the parameters of the
+         expression changes.  At  the same time, make sure you use
+         labels as much as possible.  A good assembler program will
+         see almost no constants in the operands of instructions,
+         unless the constant is really what is desired.
+
+              A number of errors can pop up while using expressions.
+         Check the appendix on error messages if you run into one.
+         Most of these will be SYNTAX errors, of which there are ten
+         different types.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 19                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+
+         5.  Pseudo-ops
+
+              Even though you should now have a reasonable
+         understanding of how to put together a program, you will
+         still find you can do very little without the use of
+         pseudo-ops.  These pseudo-ops are so named because they
+         appear in assembler statements in the same place as the op of
+         a real machine instruction.  They are not real ops, though,
+         and don't normally generate machine instructions.  In PAL,
+         there are two kinds of pseudo-ops.  The first kind consists
+         of those made from special symbols.  The second kind all have
+         mnemonic names just like ops, but they all begin with a dot
+         character.  They will be treated one at a time.  For each
+         pseudo-op, the syntax will be given along with a description
+         o how to use it.  First, the special character pseudo-ops.
+
+         5.1  =
+
+         Syntax:
+                                  label = expr
+
+              The equals pseudo-op can be used to assign a value to a
+         symbol, just like in BASIC.  The difference is that you may
+         assign a value to a given symbol only once.  Any symbol may
+         normally only be defined in one place, either by being on the
+         left hand side of a statement or by means of an equals.
+         Equals, like all once-only symbol assignments, is performed
+         only on pass one.  If you attempt to redefine a symbol with
+         equals, you will get a REDEFINITION error.
+
+         5.2  _
+
+         Syntax:
+                                  label _ expr
+
+              The assignment and equals pseudo-ops are very similar.
+         The assignment pseudo-op (_) can be used, however, to assign
+         to a symbol that already has a value, and thus to change that
+         value.  Assignment is done on both passes, so a symbol can be
+         assigned, changed and changed back.  It is generally a good
+         idea to use the assignment pseudo-op on a symbol in all
+         places where it is assigned if it is used at all.  Since
+         other forms of symbol assignment only operate on pass one,
+         you might get a nasty surprise on pass two when a symbol has
+         the strange value given it by a _ back in pass one,
+         immediately after it appears to have been set in the source
+         by equals.  Some examples:
+
+            VALUE   _  100 ;QUITE SIMILAR TO EQUALS
+            COUNT   _  COUNT-1 ;DECREMENT A SYMBOL
+            CURRENT _  * ;SET A VARIABLE TO THE CURRENT PROGRAM
+         COUNTER
+
+         5.3  *=
+
+         Syntax:
+                                     *=expr
+
+
+                                    Page 20                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+
+              The "star equals" pseudo-op is quite useful.  Just as it
+         appears to do, it sets the program counter, which is known in
+         expressions as star.  Although it need not be given a label
+         on the left hand side, it usually is, since this op takes on
+         many functions, including reserving blocks of space and
+         assigning blocks of symbols.
+
+         5.3.1  Program Origin
+
+              The first use of *= is to set the origin of the program
+         you are assembling.  You must tell the assembler where you
+         want the program to run.  You do this by means of *=.  As you
+         saw in the first sample program, we set the initial program
+         counter, or 'origin' to $300 (?).  You can use *= as the
+         first statement in your program to set the origin wherever
+         you like it.  This is one use of *= that does not usually get
+         a label on the left.
+
+              You can also use *= to jump around in memory assembling
+         code at various places.  You may only do this when your
+         object is being output in two very special manners, however.
+
+         5.3.2  Allocating Blocks
+
+              You use *= to allocate a block of memory inside a
+         program for a table or scratch area.  To do this, you simply
+         bump the program counter by the amount of space needed for
+         the table.  For example, to leave a table in memory of 256
+         bytes with a label of TABLE on it, try:
+
+                                 TABLE *=*+256
+
+         You will note that *= breaks the normal convention requiring
+         a space after the pseudo-op.  This is done so that uses of *=
+         will look more like assignments.  They still appear separated
+         in the listing.  You should note that when *= is used, the
+         symbol is assigned to the value of the program counter before
+         the program counter is changed.  You can leave smaller
+         amounts of memory with *=, although if the amount being left
+         is only one or two bytes, the use of .BYTE and .WORD, both
+         described later, is recommended.
+
+         5.3.3  Blocks of Symbols
+
+
+              Quite commonly, you will wish to assign symbols to
+         various places in a continuous area of memory, with space
+         left according to the size of the object that the area
+         pointed to by the symbol will represent.  You will wish to do
+         this in areas completely outside your program, including
+         special data areas, and most importantly zero page.  Most
+         programs require an assortment of locations in zero page that
+         must be labelled.  You use *= to assign these labels in the
+         same means that you allocate blocks.  For example, say you
+         wanted a symbol called COUNT to represent a one byte area,
+         POINTER to represent a two byte area, and FLOATING to
+         represent five bytes.  You would do the following:
+
+
+                                    Page 21                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+
+                     *=$16
+            COUNT    *=*+1
+            POINTER  *=*+2
+            FLOATING *=*+5
+
+         Using this method, you could insert symbols as desired, or
+         stick them on the end, and not worry about the order.  Some
+         assemblers force the operation to be done by means of
+         something like the following:
+
+            COUNT    = $16
+            POINTER  = COUNT + 1
+            FLOATING = COUNT + 2
+
+         in this case, the length of the area represented is on the
+         next line, and changing things around is difficult.  You must
+         also remember that FLOATING has a size of five if you wish to
+         add something to it.
+
+              You can use this to assign almost all of your pool of
+         zero page or other memory storage.  Be sure to reset the
+         program counter before you assemble any more code, however.
+         You should note that due to lack of space in PAL to provide
+         differently, when you assign a symbol by putting it on the
+         left of a *=, it gets the value of the program counter before
+         it has changed, but the listing gives the value after it has
+         changed.  This may cause some confusion while reading
+         listings.
+
+         5.4  .BYTE
+
+         Syntax:
+                              .BYTE expr,expr,...
+
+              The .BYTE pseudo-op is used to actually place one byte
+         values into code at the current pc location.  It takes as
+         operand a string of valid PAL expressions delimited by
+         commas.  As many as will fill the PAL input line buffer may
+         be used, or as few as one may be used (no comma).
+         Expressions may be of any type, with modifiers as desired
+         (note: "!" does nothing).  The result of the expression must
+         be a one byte value, or an ILLEGAL QUANTITY error will
+         result.  This means you will want to use the "<" and ">"
+         modifiers when dealing with two byte values like addresses.
+         A one byte value is one in the range 0-255 or $ff80-$ffff.
+         The high values are accepted because they usually indicate
+         the negative numbers from -1 to -128.  This allows the line
+         ".BYTE -1" to be valid.  .BYTE is of use in defining tables
+         and values such as jump tables and pointers.  It can also be
+         used to sneak in instructions like the BIT instruction, via
+         this common 6510 coding trick:
+
+                 .BYTE  $2C  ;absolute BIT instruction
+           LABEL LDA #-1     ;hidden load instruction
+
+         5.5  .WORD
+
+
+
+                                    Page 22                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         Syntax:
+                              .WORD expr,expr,...
+
+              The .WORD pseudo-op is similar to .BYTE except that it
+         enters a two byte value for each expression given.  The 16
+         bit value is placed in the code in the standard low,high
+         format.  ".WORD VALUE" is the same as ".BYTE <VALUE,>VALUE".
+
+         5.6  .FILE
+
+         Syntax:
+                            .FILE devnum,"filename"
+
+              The .FILE pseudo-op is used to chain in the next file in
+         a sequence of source files, each of the BASIC source type.
+         In the above syntax description, devnum is the peripheral
+         device to load the file from, and filename is the file name
+         of that device.  The closing quote is optional.  The use of
+         .FILE causes a direct chain to the following file.  It can
+         thus be used to sequence through a series o source files on
+         disk or tape, allowing very large programs to be assembled.
+         (In fact, PAL has been used to develop such programs as
+         POWERtm, CBM 64 and Atari Checker Kingtm and Atari
+         Microchesstm).  In addition, PAL is us used (naturally) to
+         assemble itself.  Say for example you had your program in two
+         files.  The first would contain the SYS line to call the
+         assembler, and the second would be all assembler.  Assuming
+         the second were on drive zero, and called "BLAT", the last
+         line in the first file would be:
+
+                                .FILE 8,"0:BLAT
+
+         This assumes your disk in on unit 8 of the peripheral bus, of
+         course.  Such chains should be terminated with the .END
+         pseudo-op, although there are clever ways to do it with
+         .GOTO.
+
+         5.7  .IF
+
+         Syntax:
+                              .IF expr:statements
+
+              The .IF is used for conditional assembly.  It takes an
+         expression, and evaluates it on both passes.  If the
+         expression is non-zero, the code after the .IF on the same
+         line as the .IF is assembled.  Usually this will consist of a
+         .GOTO to do further branching.  This extra code on the line
+         will follow a colon ":" as usual.  This is one of the reasons
+         why the multiple statement feature of PAL is supported.
+         There is a fair bit o power in the use of conditional
+         assembly.  For example, with .I, .GOTO and symbol assignment,
+         it is possible to set up assembly loops.  You should note
+         that although .IF only tests for non-zero, other tricks can
+         be performed to do different kinds of comparisons.  Shifting
+         an expression to the right by 15 bits, with ">" will cause
+         the result to be one if the original expression was negative,
+         and 0 if it was positive.  This is because the topmost bit in
+         a sixteen bit value is one if the value is negative and zero
+
+
+                                    Page 23                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         if it is positive.  This means you can compare two values
+         with .IF by subtracting them and testing if the result was
+         negative or positive.  Use of .IF is normally restricted to
+         keeping two different versions of a program.  Say, for
+         example, that you wanted to assemble a program for both 80
+         column CBMs and 40 column CBM 64s.  One thing you would do is
+         have a symbol called something like LINELEN which you would
+         assign to 80 or 04.  There would be several other variant
+         symbols, and probably even sections of code that would have
+         to differ from version to version.  If you set up a variable
+         called something like COL80, and assign it to 1 if on the 80
+         column machine and 0 of the 40 column, you can do the
+         following:
+              1000 .IF COL80:.GOTO 1050
+              1010 ;CODE FOR 40 COLUMN MACHINE
+              1020 .....
+              1040 GOTO 1100;BRANCH AROUND 80 COLUMN CODE
+              1050 ;CODE FOR 80 COLUMN CBM
+              1060 .....
+              1100 ;COMMON CODE
+
+         You could use conditional pieces of code to define symbols or
+         load special symbol tables with .IF.  That way you can change
+         from one version to another just by changing one symbol.
+         This is how the different versions of PAL are made.
+
+         5.8  .GOTO
+
+         Syntax:
+                                   .GOTO expr
+
+              The .GOTO pseudo-op (so named so it can be renumbered
+         with the RENUM of POWER) causes an unconditional transfer to
+         the line number which is its argument.  This line number may
+         be an expression, allowing for a computed .GOTO.  This line
+         number will be taken to be in the current source file (ie. if
+         you have multiple source files and use .FILE, you may not
+         jump between them) but it may be at any place in the file,
+         after or before.  This allows you to set up loops with the
+         use of .IF and symbol assignment to decrement a symbol.  Try
+         for example:
+
+              10 SYS700
+              20 .OPT P
+              30 COUNTER _ 5;HOW MANY LOOPS
+              40 LDA COUNTER+$8000
+              50 COUNTER _ COUNTER - 1;DECREMENT IT
+              60 .IF COUNTER:.GOTO 40
+              70 .END
+
+         Normally, .GOTO is used only with .IF.
+
+         5.9  .GTB
+
+         Syntax:
+                                      .GTB
+
+              This pseudo-op stands for Go To BASIC.  It takes no
+
+
+                                    Page 24                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         argument, and causes a transfer to BASIC at the point in the
+         source it is encountered.  BASIC statements following are
+         executed by the interpreter.  Return to the assembler is done
+         by a SYS to a special entry point in the assembler.  This
+         entry is located in a special table of jumps near the start
+         of the assembler.  You can find this address by subtracting 6
+         from the address found in the vector you use to call PAL.
+         For example, you can return to PAL with
+         "SYSPEEK(701)*256+PEEK(702)-6".  It should be noted that the
+         use of BASIC is somewhat limited, and certain statements that
+         would disrupt the operation of the assembler should not be
+         executed.
+
+              Notably among these is the INPUT statement, or anything
+         that writes into the BASIC input buffer ($200), beyond the
+         first 9 bytes.  You may, however, use the GET statement.
+         Control should never be given to the user, as damage may
+         result.  In general, you can use this to print out stats or
+         do special I/O setups in the middle of an assembly.  While
+         BASIC code is running, PAL's zero page variables are swapped
+         out into the BASIC input buffer in page two, so you may not
+         manipulate them.  You can't call any PAL subroutines either.
+
+         5.10  .ASC
+
+         Syntax:
+                              .ASC "ASCII string"
+
+              This pseudo-op is used to enter ASCII strings into the
+         object stream.  It is required due to a deviation in the
+         syntax of PAL from the MOS standard.  This standard directs
+         that strings inside quotes in a .BYTE pseudo-op be entered as
+         strings.  To allow consistency in the expression evaluator,
+         PAL does not allow this, as any extra characters in a
+         character constant in an expression are ignored.  .ASC (for
+         ASCII) puts the quoted string in the text for you, and can be
+         easily put in sequence with .BYTE instructions in translating
+         from the MOS standard.  The first quote is required, but the
+         trailing one may be left off unless spaces are required, or
+         something else like a comment or another statement follows on
+         the line.
+
+         5.11  .SYS
+
+         Syntax:
+                                   .SYS expr
+
+              The .SYS takes a standard expression as an argument.  It
+         acts like the SYS command of BASIC.  A JSR is done to the
+         given address on each pass.  An undefined symbol is an error
+         on either pass.  Your subroutine is called with the assembler
+         in its normal mode, which is to say that most of the zero
+         page used by BASIC has been swapped out to 2 page so that
+         zero page memory can be used by the assembler.  The swap
+         routine, documented with the jump tables at the end of the
+         program, can be used to get them back, but this means that
+         internal assembler routines, such as the expression evaluator
+         cannot be used if this is done.  You must thus normally be
+
+
+                                    Page 25                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         cautious about what operations related to BASIC and BASIC
+         associated locations are done.  You are in a position to call
+         other assembler subroutines, such as the expression
+         evaluator, and this command essentially allows you to
+         generate your own additional pseudo-ops.
+
+         5.12  .STM
+
+         Syntax:
+                                   .STM expr
+
+              This is used to specify a lowest address for the symbol
+         table.  The symbol table normally grows down from the top of
+         memory pointer on the CBM 64.  (This can be changed by means
+         of a special .SYS you can code)  By default, the symbol table
+         minimum is set at the start of an assembly to point to the
+         end of memory used by BASIC programs and variables.  You may
+         want to set it higher if you are chaining with .FILE or using
+         buffered object output. (.opt o)  If you have an at-sign
+         function coded, you could use this to do things like peek and
+         return a good symbol table minimum.  Should the symbol table
+         grow below the minimum you set, a SYM TABLE OVERFLOW error
+         will occur.  This is a fatal error.
+
+         5.13  .SST
+
+         Syntax:
+                    .SST device,secondary address,"filename"
+
+              Symbol table files may be saved and loaded with
+         peripheral bus storage devices such as the COMMODORE disk
+         unit.  .SST is executed on pass one only, and saves the
+         symbol table as generated to that point.  The first argument
+         is the device number of the storage device.  For the disk,
+         this is typically 8.  The secondary address is any valid
+         sequential file secondary address you are not using for other
+         purposes on that device.  For the CBM 64 disk, values in the
+         range 2-14 are usually good.  The file name is as would
+         normally be given on an open statement in BASIC for that
+         file.  Normally, for the CBM 64 disk, this requires a ",S,W"
+         be tacked on after the end of the file name to specify a
+         sequential file to be used for write.  It is often advisable
+         to put an ":" in front of a CBM 64 disk filename, as usually
+         a program will be assembled to its output file more than
+         once.  This pseudo-op is also used on the process of
+         generating sorted listings of the symbol table of a program.
+         This is done by creating a symbol table file with a .SST
+         statement on the last line of the source program.  This file
+         can then be used as input to the symbol table lister.
+
+         5.14  .LST
+
+         Syntax:
+                    .LST device,secondary address,"filename"
+
+              This is the companion pseudo-op to .SST, as it will load
+         up and enter into the symbol table the contents of a symbol
+         table file saved by it.  This is executed only on pass 1.  It
+
+
+                                    Page 26                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         should be noted that at present, duplicate symbols are not
+         checked for, all that happens is that the newly added symbols
+         will replace any counterparts since they are found first in a
+         symbol lookup.  Symbol table overflow is also not currently
+         checked for, but will of course be detected by the addition
+         of any extra symbols in the normal fashion after a .LST
+
+              You should find .LST to be a very useful tool in both
+         large and small projects.  As your use of the CBM 64
+         increases, you will build up a set of symbols that refer into
+         the CBM 64 ROMs and the CBM 64 zero page.  you should keep
+         these definitions in one file and write them to disk with a
+         .SST.  Then, any time you are writing a quick or a long
+         program, you can load in this symbol table and have access to
+         all these locations by name instantly.  You can keep versions
+         of this symbol table file for different ROM versions of the
+         CBM 64, and this way change your program from one version to
+         the next quite quickly.  On the PAL disk, you will find the
+         symbol table file that PAL uses, so that you can write
+         routines that deal with PAL zero page.  This file also has a
+         number of definitions for internal CBM 64 routines you will
+         find useful.
+
+         5.15  .END
+
+         Syntax:
+                             .END device,"filename"
+
+              This pseudo-op is actually optional on most source
+         files.  The assembler will insert a .END with no arguments if
+         it comes to the natural end of a source file.  The .END
+         actually causes a .GTB after the pass two cleanup, so that
+         you may put in your own termination code in BASIC, including
+         printing of statistics and actually calling your code at the
+         right entry point if desired.
+
+              .END also takes optional arguments.  These arguments, as
+         shown in the syntax description above, are of the same format
+         as those of .FILE.  If the argument is present, the assembler
+         will do that .FILE at the end of pass 1 only, reseting its
+         pointers to begin pass 2 at the same address in that file as
+         the first line after the SYS that called the assembler, ie.
+         this file specified should be the first file in the assembly
+         chain.  This simplifies chaining of long source files.  One
+         creates a calling file that contains the SYS to call the
+         assembler, chains through the other files with .FILE, and
+         returns to the original with .END.  On pass 2, .END acts as
+         though it had no argument.
+
+         5.16  .OPT
+
+         Syntax:
+                             .OPT option,option,...
+
+              The .OPT pseudo-op stands for OPTion, and it allows you
+         to specify the disposition of printed output and object code.
+         Valid options are:
+
+
+
+                                    Page 27                           
+
+
+                   PAL 64 Manual                         5. Pseudo-ops
+
+
+              P  - Print.  This option specifies the assembly listing
+                   be output to the CBM 64 screen.  All the P options
+                   specify printing to the screen in addition to the
+                   type specified, as the screen is rarely the slow
+                   part of a listing.  Listings are formatted and
+                   tabbed despite the free format of the source.
+                   Regardless of P options, lines with errors, and
+                   lines containing .FILE specifications are printed
+                   on both passes.
+
+              P# - Print to file.  With this option you provide a PAL
+                   expression after the P which specifies a CBM 64
+                   logical file number.  Listing output is then sent
+                   out to this file in the same manner as PRINT# of
+                   BASIC.  The file should of course be opened with an
+                   OPEN statement prior to the SYS call that starts
+                   the assemble.  This allows printing to any normal
+                   file, such as one on disk, printer or tape
+                   cassette.  With a typical CBM 64 printer on bus
+                   device 4, you would enter:
+
+                           10 OPEN 4,4
+                           20 SYS 700
+                           30 .OPT P4
+
+              P=addr - Print to user routine.  With this option
+                   specified, when the assembler wants to print a
+                   character it will JSR to the routine at addr where
+                   addr is a PAL expression.  The character to be
+                   printed will be in the accumulator, with a zero
+                   sent when it is time to close the file.  This
+                   allows the use of special routines to service
+                   private printing devices, such as those off the
+                   parallel port, or modems, etc.  You can even
+                   specify P=$FFD2 which will cause everything to be
+                   printed twice!
+
+              O  - O options specify the object output.  With no
+                   additional letters, this specifies object output to
+                   a special buffer kept just above the end of the
+                   BASIC scalar variable table.  This is the memory
+                   area where BASIC arrays would normally be kept, and
+                   it uses the same pointers.
+
+              OO - This means "Object where Origined" which means the
+                   object code will be written right into the memory
+                   it is meant to run in.  This is generally useful
+                   for quick running and debugging, and allows
+                   complete freedom o movement of the program counter.
+                   Programs that run in sensitive areas of memory, or
+                   which cannot be fit with both source and assembler
+                   cannot be done in this way of course.  This will
+                   probably be the method you use the most, as it
+                   allows quick assembly and testing of programs
+                   without going to disk.
+
+              O# - Similar to P#, this sends object output to a
+                   peripheral bus file.  The file is generally
+
+
+                                         Page 28                      
+
+
+                   PAL 64 Manual                         5. Pseudo-ops
+
+
+                   expected to be like a CBM 64 disk program file once
+                   opened, however this does not have to be true.  The
+                   file should be opened with an open statement before
+                   the assembler is called, and it will be closed if
+                   the assembly terminates normally.  The file number
+                   is specified in the same way by the PAL expression
+                   after the O.  The first thing written out to the
+                   file is the start address, so that if the file is a
+                   CBM 64 disk object file, it will be loadable
+                   directly as though it were saved by a save command.
+                   Note that this does not work to tape.  Here is an
+                   example, with object output to a loadable disk file
+                   called BLAT on drive zero.
+
+                        10 OPEN 2,8,1,"0:BLAT"
+                        20 SYS 700
+                        30 .OPT O2
+                        40 *=$7000
+                        50 ;code
+
+                   It should be noted that on the CBM 64, when you
+                   have a disk machine language program file, you must
+                   either load it with SUPERMON or stick a ",1" on the
+                   end of your LOAD command.  For example, to load the
+                   above case you need:
+
+                        LOAD "BLAT",8,1
+
+                   or else the program will load where BASIC programs
+                   go.
+
+              O=expr - this option will allow a user routine for
+                   output with the same syntax as the P= command.
+                   Note that the object output routine must be
+                   somewhat more complicated, as the routine is called
+                   only once per assembler line.  A number o symbols
+                   required for object output will be provided in a
+                   symbol table file with th assembler.  This can be
+                   loaded off the disk with a .LST pseudo op.  The key
+                   one to refer to is LENGTH, which contains the
+                   number of bytes per output, minus one.  Thus if
+                   LENGTH is zero, one byte of code is to be output.
+                   Your routine must also check for two other values
+                   in length as special cases.  The value $80 is used
+                   to indicate a request to open the object file, as
+                   the first object output is about to be done.  The
+                   value $7F indicates time to close it.  Otherwise
+                   the LENGTH value will be a low number from 0
+                   upwards.  Normally the object output routine should
+                   never be called with a value $FF (length = 0) as no
+                   object output is expected, and this is detected by
+                   the caller.
+
+                        The data to be output are stored in 2 areas.
+                   The first three bytes are in zero page, starting at
+                   the symbol OP, which contains the op code for
+                   instruction output.  If more than three bytes are
+                   to be output (this comes from .BYTE, .WORD, and
+
+
+                                         Page 29                      
+
+
+                   PAL 64 Manual                         5. Pseudo-ops
+
+
+                   .ASC) then the extra bytes can be found starting in
+                   page one at symbol OBJBUF.  Usually you will index
+                   off OBJBUF-3, if you are using an index register to
+                   index the bytes you are outputing.  your object
+                   routine, like your print routine, can use any
+                   registers and change any flags (except the decimal
+                   flag) but must be wary of zero page usage, as the
+                   BASIC zero page values are swapped out to 2 page
+                   when these calls occur, and the assembler is making
+                   more extensive use of the zero page area.
+
+              N  - You may wish at times to cancel previously set
+                   output options.  The N option resets all output
+                   options to nil, as they are set at the beginning of
+                   the program.  You must restate any options you wish
+                   to turn on or remain on.  for example, to turn off
+                   printing, but keep object going to file #2, one can
+                   say:
+
+                                        .OPT N,O2
+
+                   and use:
+
+                                        .OPT P,O2
+
+                   to resume that printing.
+
+         5.17  .BAS
+
+         Syntax:
+                                     .BAS O
+
+              This pseudo-op allows you to easily produce programs
+         that combine BASIC and machine language without all the
+         hassles that that task normally entails.  With .BAS you can
+         make a program that consists of a BASIC program followed by a
+         machine language one in memory.  Such a file, when on the
+         disk, can be LOADed and RUN like any other program.
+
+              You must use .BAS at the front of your assembler
+         program.  Your may start off your assembly in the normal
+         fashion, defining symbols and loading tables etc.  Once this
+         is done, including a line with the .BAS pseudo-op on it,
+         generally, with no argument.  The lines that follow the .BAS
+         should be normal BASIC except as explained below.  When you
+         are finished the BASIC program include an "END" statement all
+         by itself on the last line.  This will tell the .BAS
+         pseudo-op that the BASIC is finished and assembler should
+         resume.  After the END you may continue with your assembler
+         program as usual.  In this case, however, the program counter
+         ("*") will already be set to just beyond the end o the BASIC
+         program you provided, were it to be loaded where a BASIC
+         program normally sits.
+
+              The above procedure will produce a BASIC program and a
+         machine language program together in memory.  Naturally, you
+         will wish to call the machine language code at some time from
+         within the BASIC.  To do this, use the SYS statement as you
+
+
+                                    Page 30                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         would expect, but instead of providing a numeric address,
+         give a PAL expression in quotes.  PAL will figure the value
+         of the expression and write out the correct decimal number
+         after the SYS when it output the BASIC bytes to the object
+         file.  You may thus have calls to assembler routines
+         throughout your BASIC program, and they need only refer to
+         PAL symbols.  This way you can create combined programs
+         without worry over numbers or arrangement of code.
+
+              The following example shows how you might use .BAS to
+         create a simple combined program.
+
+              10 OPEN 2,8,1,"0:MIXED"
+              20 SYS 700
+              30 .OPT P,O2
+              40 OUTPUT = $FFD2
+              50 ;NOW INCLUDE BASIC
+              60 .BAS
+              70 PRINT "HELLO THERE"
+              80 PRINT "I WILL NOW PRINT YOUR NAME"
+              90 SYS"PRNAME"
+              100 PRINT:PRINT "I DID IT"
+              110 END
+              120 ; ASSEMBLER RESUMES
+              130 PRNAME = *;DEFINE CALLED LABEL
+              140 LDX #0
+              150 LOOP LDA NAME,X
+              160 JSR OUTPUT
+              170 INX
+              180 CPX #NAMELEN
+              190 BNE LOOP
+              200 RTS
+              210 ;
+              220 NAME .ASC"YOUR NAME HERE"
+              230 NAMELEN = *-NAME; FIND LENGTH
+
+              You can have as many lines with special SYS codes in
+         them as you like.  This allows you to build complex BASIC
+         programs that call machine language routines whenever they
+         need speed and power.  In this case the object code was
+         written  to a disk file.  When this disk file called "MIXED"
+         is loaded, it can be RUN and the BASIC will run and call the
+         assembler.  The BASIC line numbers will remain the same.  You
+         should note that since we have a combined program, there is
+         machine code in memory right after the BASIC code.  This
+         means that you can not make changes to a combined program
+         once the conversion is done.  You must make all changes on
+         the source that contains both the BASIC and assembler code.
+
+              When PAL places a number after the SYS inside the BASIC
+         it leaves 5 bytes since a number could be as big as 5 digits.
+         In most cases, numbers will be 4 digits.  To take up the
+         extra space, PAL puts a colon after the 4 digit number.  You
+         should only have to worry about this if your SYS routine
+         starts reading bytes from the BASIC source the same way the
+         SYS700 that calls PAL does.
+
+              If you provide an argument of any kind to the .BAS
+
+
+                                    Page 31                           
+
+
+         PAL 64 Manual                                   5. Pseudo-ops
+
+
+         pseudo-op, ie. ".BAS O", it will cause the assembly to take
+         place for the area of memory immediately after the source
+         program instead of to $0801.  If you use the ".OPT O" mode of
+         object output, the code will be placed in memory where it is
+         supposed to run without destruction of the existing program.
+         In this case, you may use the POWER "TEST" command to look at
+         and run the mixed program.  The POWER "BACK" command will
+         restore the old source.  In this way you can write a mixed
+         program, assemble it, test it and go back to modify the
+         source without ever going to disk.  It should be noted,
+         however, that if you SAVE the program while in TEST mode that
+         you can not load it back under normal conditions, for it is
+         meant to run in a different area of memory from most BASIC
+         programs.
+
+              Without the POWER commands listed above, you may test
+         the output of a mixed program in one of two ways.  In the way
+         shown above, you write the object code to a disk file.  This
+         disk file can then be LOADed and RUN.  You may also use the
+         ".OPT OO" mode of object output and the mixed program will be
+         written right on top of the source.  If you do this, you will
+         encounter problems because the BASIC portion of the mixed
+         program will not have the line number list chains properly
+         set up.  (Both the LOAD command and the POWER TEST command
+         set up these chains.)  You may still use the program if it
+         contains no line number references, as in GOTOs or GOSUBs.
+         You may also SAVE it and LOAD it if you have tape.
+         Fortunately, you may also issue the command:
+
+                                   SYS 42291
+
+         and this will repair the line list chains noted above.  It's
+         best, however, to have POWER in place and to use the TEST
+         command, which was designed for this purpose.
+
+
+              The .BAS pseudo-op does not work with RPAL described in
+         the appendix, for such programs cannot be relocated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 32                           
+
+
+         PAL 64 Manual                               6. Error Messages
+
+
+
+         6.  Error Messages
+
+              PAL has various error messages, which are issued during
+         either pass.  If an error is detected, the name of the error
+         is printed, preceded by four stars.  After the error message,
+         the erroneous line is printed on the screen regardless of set
+         printing options.  It also prints out any activated printing
+         channels.  In addition, SYNTAX errors are accompanied by a
+         digit printed before the four stars which indicates what type
+         of syntax error has occurred.  There are 10 different syntax
+         errors, and the number for each is listed below.
+
+              Some error are "fatal", which is to say they abort the
+         assembly completely if they are encountered.  Fatal error
+         messages are preceded by a line of exclamation points (!).
+         The assembly stops after the message is printed.  When an
+         error occurs, the first byte of those generated by the
+         erroneous line is changed to a zero, which is the 6510 BRK
+         instruction.  Thus, if you try to execute a program that had
+         an assembly error, a breakpoint will reset the machine or
+         call the monitor if you pass through the bad line.
+         Naturally, however, some errors will garble the program so
+         much you should not even try to execute it.
+
+              One type of error that is not detected by PAL is the
+         "phase" error.  This error should never normally occur, but
+         can be caused by funny operations with conditional assembly
+         or error during .BYTE and .WORD pseudo-ops.  A phase error
+         occurs if the assembler's idea of where the program counter
+         should be differs from pass one of the assembly to pass two.
+         A phase error will cause many labels to be out of phase with
+         the actual code, and thus completely garble the code.  If you
+         wish to detect phase errors, you can use a little trick with
+         .IF.  A line of the form:
+
+                         PHASE .IF PHASE-*:PHASE ERROR
+
+         will do the job.  Normally, PHASE will always be the same as
+         *, the program counter, and the extra line will never be
+         assembled.  If the program counter does get out of phase with
+         symbols though, the result will be non-zero, and the extra
+         statement will be assembled, giving a SYNTAX error which you
+         can recognize.
+
+                                    MESSAGES
+
+         SYNTAX - This error is preceded by a digit as stated above.
+         Those digits and their meanings are:
+
+            0) Label not valid on null statement.  (Encountered on a
+               line with just one string and no spaces on it.)
+
+            1) Invalid op code.
+
+            2) Invalid address mode - the mode given is not recognized
+               as any valid mode.
+
+
+
+                                       Page 33                        
+
+
+               PAL 64 Manual                         6. Error Messages
+
+
+            3) Unrecognized operator in expression.  (Some funny
+               character is in an expression.)
+
+            4) Unbalanced parentheses or brackets.
+
+            5) Invalid expression term - an invalid character in an
+               expression, or a quoted character term with no
+               character in it.
+
+            6) Missing comma.  A comma was expected by a pseudo-op.
+
+            7) Invalid pseudo-op.  The .XXX string given was not
+               recognized as a pseudo-op.
+
+            8) Symbol does not start with a letter.  A symbol was
+               expected but a non- alphabetic character was found.
+
+            9) Op code not valid with address mode.  You can not use
+               the given address mode with the given instruction.
+
+         ILLEGAL QUANTITY - Your expression returns a value that is
+               beyond the limits allowed for this instruction or
+               pseudo-op.  Something in the expression may be creating
+               a value larger than 65535.
+
+         OVERFLOW - The line input buffer used by PAL to parse your
+               line has overflowed.  Shorten your line by splitting it
+               into two, or using temporaries to simplify the
+               expression.
+
+         BRANCH OUT OF RANGE - A relative branch has been attempted to
+               a location more than 128 bytes from the program
+               counter.  The 6510 can not do this, and you must recode
+               the branch to a closer location.
+
+         REDEFINITION - An attempt has been made to redefine the value
+               of a symbol without the use of the symbol redefinition
+               operator.
+
+         UNDEF'D STATEMENT - A label used in an expression is not
+               defined.  This can also occur if a null expression is
+               given where a non-null one is expected.
+
+         REVERSAL - An attempt has been made to assemble code at a
+               location lower than the last location code was
+               generated at.  This error does not occur if object code
+               is going directly to memory by means of OO, or if you
+               are outputing relocatable object.  This is a fatal
+               error, as are all that follow.
+
+         SYM TABLE OVERFLOW - You have attempted to add more symbols
+               than there is room for in the symbol table.  Reduce the
+               minimum with .STM or break your program up into chunks
+               to provide more memory.
+
+         OUT OF MEMORY - There is no more room for object code in the
+               buffer area (.OPT O mode) to grow.  Output object to
+               disk or use some other means.
+
+
+                                       Page 34                        
+
+
+               PAL 64 Manual                         6. Error Messages
+
+
+
+         UNDEF'D STATEMENT - A .GOTO has been made to a statement that
+               does not exist in the current program.  (Just like in
+               BASIC)  Unlike the previous error of this name, this
+               one is fatal.
+
+         DEVICE NOT PRESENT - The peripheral you have tried to access
+               is not on the bus, or does not respond.
+
+         IEEE - some other error has occurred on the peripheral bus or
+               with some CBM 64 device.  The error name refers to the
+               peripheral bus used on most Commodore computers.
+
+         DISK - An error has occurred during the use of the CBM 1541
+               disk unit.  The error message and numbers sent by the
+               CBM 1541 disk will be printed before the error message.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 35                           
+
+
+         PAL 64 Manual                                   7. More Notes
+
+
+
+         7.  More Notes
+
+              POWER provides a special feature for use by PAL owners.
+         The instant phrase and instant subroutine features of POWER
+         that are entered with
+
+                                  REM"A=HELLO
+
+         type statements may also be done with semicolons when using
+         PAL.  Thus:
+
+                                   10 ;"P=PAL
+
+         has the same effect as
+
+                                  10 REM"P=PAL
+
+              Power also provides the TEST and BACK commands that are
+         designed to work with the .BAS pseudo-op.  Please see the
+         description of that pseudo-op for details.  (If you don't
+         have POWER, don't worry about these features.)
+
+
+         7.1.  Using PAL with Tape
+
+              PAL can be used by people without disk systems, although
+         i is not as convenient.  The .LST and .SST ops will not work
+         with tape units, but .FILE and .END will.  You can thus chain
+         through files on tape if you must.  The files must be
+         recorded twice, or you must have a .SYS or .GTB routine
+         before the .END to allow the rewinding of the tape unit.
+         Normally however, PAL will work well if you are working on a
+         short program that can be entirely in memory.  (Over 1K on a
+         32K machine.)  You can edit, assemble and test without ever
+         touching a mass storage unit.  (This is how you do a short
+         program even if you have disks - it's a lot faster than any
+         other method on any assembler.)
+
+              If you must, you can even write an object output routine
+         that will output your object in some form that is acceptable
+         to tape.  (Hexadecimal, for example.)  You will have to write
+         a loader to load the program in later, of course.  You can
+         also write .SYS routines to do symbol table operations if you
+         must.  Because of PAL's 4K size, it can even be used by
+         owners of original 8K pets provided they have upgraded their
+         ROMs to a newer BASIC.
+
+              When PAL finishes an assembly, it prints the upper and
+         lower bounds of code generation on the screen.  You will see
+         the form of the line on your first execution, which is of the
+         form "]address-address".  The second address is one byte
+         beyond the last byte generated.  This range can be used if
+         you want to save directly generated output with the machine
+         language monitor, SUPERMON.
+
+
+         7.2.  Advantages o PAL
+
+
+                                    Page 36                           
+
+
+         PAL 64 Manual                                   7. More Notes
+
+
+
+              One of PAL's main advantages over other assemblers is
+         its convenience.  With PAL, you can modify, assemble and test
+         in a quick sequence without any interaction with disk on a
+         short file.  Assemblies of programs up to a full 1K in size
+         can be assembled in around ten seconds in this way.  The CBM
+         assembler, which must go to disk, takes 50 seconds for this,
+         plus the time required to load the assembler in, run it, load
+         the loader, run it, execute your program and then reload the
+         source for more changes.
+
+              With PAL, you use an environment and editor you don't
+         have to learn, and you have the calculator power of BASIC at
+         your fingertips.  You can use (and in fact, should use) PAL
+         anywhere you would use a mini-assembler.  There is no more
+         typing, but you are dealing with a full assembler, and can
+         easily make additions, changes, or deletions in your programs
+         without worrying about addresses.
+
+              In addition, the .LST and .SST features allow you to
+         work quickly on programs without having to define all kinds
+         of symbols each time.  By making a table of your most
+         commonly used symbols, such as CBM 64 zero page locations and
+         subroutines and saving the symbols with .SST, you can access
+         them quickly in a short program with .LST.  You will also
+         want to use .LST with large programs, because it takes much
+         less time to load in a symbol table than to assemble one each
+         time.  If your programs grow in size, PAL allows them to by
+         providing chaining with .FILE.  Even when chaining from the
+         disk, PAL is faster than other 6510 assemblers the author has
+         seen.  Future plans for PAL include a sophisticated macro
+         package (using the single quote character for macro
+         substitution.)
+
+              One of the biggest advantages of PAL is the .BAS
+         pseudo-op.  This allows convenient combination of BASIC and
+         machine language programs, a facility provided by no other
+         assembler.
+
+
+         7.3.  History of PAL
+
+              PAL was written in the summer of 1979 to provide a tool
+         for the development of POWER.  Development was first on the
+         PET/CBM line of computers and the program has now been moved
+         to the CBM 64.  For most of its early life, it was used only
+         by a small number of PET users.  It has been used, in
+         combination with POWER, in an introductory assembler course
+         at the University of Waterloo, in Ontario, Canada.
+
+
+         7.4.  Problems
+
+              PAL reads in BASIC source.  As you may know, such source
+         is "tokenized" so that BASIC keywords only take up one byte
+         in memory.  PAL expands these tokens for you, so you need not
+         worry about them under normal conditions.  One problem you
+         may run into, however, is that you can not use a question
+
+
+                                    Page 37                           
+
+
+         PAL 64 Manual                                   7. More Notes
+
+
+         mark in a comment.  The CBM 64 will turn any question mark
+         into the token for PRINT, and PAL will expand it out as PRINT
+         when it reads it back.
+
+
+         7.5.  More Examples
+
+              Here are some more sample PAL programs to explain use of
+         some features.  Example of chained set of files:  The first
+         file is called "FILE1.
+
+              10 OPEN 2,8,1,"0:OUTPUT"
+              20 SYS 700
+              30 .OPT O2
+              40 ;code
+              50 .FILE 8,"FILE2"
+
+         Here is "FILE2"
+
+              10 ;code
+              20 ;more code
+              1000 .FILE 8,"FILE3"
+
+         And finally "FILE3"
+
+              10 ;lots of code
+              1000 .END 8,"FILE1"
+
+         The .END statement brings you back for the second pass.
+
+
+              Here is a program that would list to the printer on
+         device 4:
+
+              10 OPEN 4,4
+              20 SYS 700
+              30 *=$5000
+              40 .OPT P4
+              43 SCREEN = $400
+              44 LINELEN = 40 ; LENGTH OF SCREEN LINE
+              50 LDA #" "+128
+              60 LDX #0
+              70 LOOP STA SCREEN+(5*LINELEN),X ; PUT WHITE SQUARE ON
+                 SCREEN, STARTING LINE 6
+              80 DEX
+              90 BNE LOOP
+              100 RTS
+
+
+         7.6.  Detailed Example
+
+              Here is a detailed example program with comments on each
+         line.
+
+          10 OPEN 1,8,1,"0:OBJECT"
+             - Opens object file on unit 8, drive 0 to file number 1.
+          20 OPEN 4,4
+             - Opens printer on unit 4 to file 4.
+
+
+                                    Page 38                           
+
+
+         PAL 64 Manual                                   7. More Notes
+
+
+          30 SYS 700
+             - Calls assembler.
+          40 .OPT P4,O1
+             - Print to file 4 (printer), put object to file 1 (disk).
+          50 *=$5000
+             - Program is to run at hex address 5000
+          60 OUTPUT = $FFD2
+             - Kernel routine that prints character in accumulator.
+          70 READKEY = $FFE4
+             - Kernel routine like GET, gets key from keyboard.
+          80 ;
+             - Blank comment line.
+          90 STOPKEY = 3 ; character returned when stop key is hit.
+             - You could also type the STOP key in double quotes.
+         100 GETKEY JSR READKEY
+             - Gets key from keyboard into accumulator.
+         110 BEQ GETKEY
+             - If 0, no key was read.  BEQ branches if result was 0.
+         120 CMP #"@"
+             - Check to see if the key was an at-sign.
+         130 BEQ WASAT
+             - If it was, go to code at WASAT.
+         140 CMP #STOPKEY
+             - Check for break key.
+         150 BEQ ALDONE
+             - If it was, go to quit routine.
+         160 JSR OUTPUT
+             - Print the character if it was not special.
+         170 JMP GETKEY
+             - Get another key.
+         180 WASAT = * ; routine for at-sign
+             - Note use of assignment to star to set label.
+         190 LDX #0
+             - Load the X register with zero.
+         200 OUTPLP LDA MYNAME,X ; get character in name
+             - Note indexing and labelling.
+         210 JSR OUTPUT ; output character
+         220 INX
+             - Bumps X register further into MYNAME area.
+         230 CPX #NAMELEN
+             - Check to see if X has reached the length of the name.
+         240 BCC OUTPLP
+             - BCC branches if the X was less than NAMELEN, unsigned.
+         250 JMP GETKEY
+             - Otherwise, we can go back.
+         260 ;
+         270 ALDONE RTS
+         280 MYNAME .ASC "Your Name Here"
+             - Puts the text of your name in memory.
+         290 NAMELEN = *-MYNAME
+             - Calculates the length of your name into symbol NAMELEN.
+         300 .SST 8,4,"0:QSTAB,S,W"
+             - Save symbol table for later printing.
+         310 .END
+             - Normally not needed unless you want something done
+               after assembly.
+         300 ?"HI FOLKS"
+             - BASIC again.
+
+
+                                    Page 39                           
+
+
+         PAL 64 Manual                                   7. More Notes
+
+
+
+
+         7.7.  On Your Way
+
+              You are now ready to program on the CBM 64 with PAL.
+         There is still a lot to learn, though, including what areas
+         of zero page are safe for use and what handy routines the CBM
+         64 has.  Jim Butterfield's (another PAL user) memory maps are
+         a real life-saver in this area.  They can be found in many
+         magazines such as the Commodore Canada Transactor, and in
+         books on the CBM 64.  Many magazines like COMPUTE!, MICRO,
+         The Transactor, The TORPET, and Commodore: The Microcomputer
+         Magazine will have valuable references for you.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 40                           
+
+
+         PAL 64 Manual                                      Appendix A
+
+
+
+                                   APPENDIX A
+                                Pal Environment
+
+              PAL parses its lines into a buffer starting at $100 in
+         CBM 64 memory.  All operations on lines are done in this
+         buffer, with the Y register pointing into it as an offset
+         from $100.  Printing is also done from this buffer, although
+         comments are not placed here.  The buffer is terminated with
+         a zero by the parser, and this zero is followed by a
+         semi-colon and an address if there is a comment.  (The
+         address points into BASIC code where the comment lies.)
+         Symbol EXPPOS has as its value the offset into the buffer
+         where the operand field starts.  Symbol LABELPOS contains
+         where the label field starts.  Storage in the buffer is in
+         ASCII, rather than CBM 64 internal form.
+
+              Assembly of a PAL line takes several steps.  First the
+         line is parsed.  Then, the instruction field is checked for
+         an op-code or a pseudo-op.  If it is a pseudo-op, that is
+         processed by special routines.  These routines put whatever
+         code they generate into 3 bytes starting at OP, and remaining
+         bytes go at OBJBUF.  If an op-code is found, it, the address
+         mode, and expression are decoded and turned into 6510 machine
+         code starting at OP.  Routines are then called to print the
+         line if need by, and then object output routines place the
+         bytes where they are set to go.  When this is complete the
+         whole thing starts again.
+
+              Several symbols were noted above that are used by PAL in
+         zero-page.  You will find the following of note:
+
+         COMPOS - the position in the buffer of the last comma found.
+         Zero if none.
+
+         PASS - pass counter.  Negative one ($FF) if pass 1, zero if
+         pass 2.
+
+         OP - the first object byte, where the OP is stored.
+
+         NEWLO, NEWHI - following op, the next two bytes of object
+         output, and also where results from EVAL are put.
+
+         LENGTH - the number of object bytes to output for this line,
+         minus one.  i.e., zero indicates one byte, one indicates two,
+         etc.  Special values are used with user routines.  See .OPT
+         O=
+
+         PC - a two byte value with the current program counter ( * )
+         in it.
+
+         OLDLO, OLDHI - EVAL also puts its result in these two
+         locations.
+
+         OBJBUF - the page 1 buffer where extra object bytes can be
+         placed if more than 3 are generated, as is done with .BYTE,
+         .WORD, and .ASC.
+
+
+
+                                    Page 41                           
+
+
+         PAL 64 Manual                                      Appendix A
+
+
+         USER - the page 1 indirect jump vector that is used when an
+         at-sign is encountered in an expression.  When the user
+         routine is called, the Y register will point to the at-sign.
+         The value calculated by your user routine should be placed in
+         locations NEWLO and NEWHI before returning via an RTS.  This
+         can be used (and in fact was once a standard) as a way to
+         include full BASIC expressions inside PAL ones.  This takes
+         work and some detailed inside information on the workings of
+         the BASIC expression evaluator.  From inside a user routine,
+         you are free to call  PAL routines described in appendix B,
+         although EVAL should not be called.  See "GETTERM" in that
+         section.
+
+         LINEVEC - a special vector to place the address of code that
+         is to intercept PAL processing of a source line.  To set up
+         the vector, place the address of your code here.  Add the two
+         bytes and "EOR" with $A5.  Place this in the check byte
+         described below.  For full details, see the NORMENT entry
+         point description in Appendix B.
+
+         LINEVCHK - check byte for LINEVEC.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 42                           
+
+
+         PAL 64 Manual                                      Appendix B
+
+
+
+                                   APPENDIX B
+                            Internal Routine Vectors
+
+              PAL has a number of vectors to allow you to use its
+         internals.  Several routines are defined for use with .SYS
+         and user functions.  In addition, .OPT allows printing and
+         object output to go through user routines, allowing
+         customization of the package.
+
+              The vectors are listed below.  They are all at the very
+         front of  the assembler.  To find their addresses, you should
+         look at the PAL call vector at locations 701 and 702 which
+         points just beyond these vectors.  The address pointed to by
+         256*PEEK(701)+PEEK(702) is represented as PAL in the table
+         below.
+
+     ERROR - PAL-27 - This is the error printing routine.  You JMP to
+         it with the error code in the X register.  ERROR codes start
+         at zero and go up, in order according to the way they were
+         listed in this manual.
+
+     CHKUND - PAL-24 - This routine will check the undefined symbol
+         flag (UNDFLG), and signal a non-fatal undef'd statement error
+         if it is set.  Usually called after calling the expression
+         evaluator.  Null expressions set the flag also.
+
+     SWAP - PAL-21 - This routine swaps the zero page used by PAL with
+         that used by BASIC.  If in the PAL operating environment, a
+         call to SWAP will restore the BASIC environment, and another
+         call reverses this.  The swapped out zero-page is kept in
+         2-page, in the BASIC input buffer.  PAL calls SWAP almost
+         immediately upon entry, and calls it again before restoring
+         control to the user.  It is also called for .GTB and
+         .FILE/.END operations.
+
+     SYMBGET - PAL-18 - This routine will read in a symbol from the
+         PAL input buffer ($100) and store it in the symbol table.
+         The Y register should point into the buffer where the symbol
+         is expected to be found.  A 'REDEFINITION' error can occur if
+         the symbol already exists.  This is useful if you wish to
+         write .SYS commands that can define symbols.  You should NOT
+         do symbol definition on PASS 2 unless you know exactly what
+         you are doing.  You should thus check the PASS counter and
+         make sure it is -1 ($FF), indicating PASS 1 before you do
+         symbol operations.  (It will be zero on PASS 2.)
+
+     EVAL - PAL-15 - This is the PAL expression evaluator.  It
+         evaluates an expression in the input buffer starting at where
+         the Y register points when it is called.  In the case of a
+         .SYS, the Y register points just after the address expression
+         when the routine is called.  You may thus INY the Y register
+         past whatever delimiter you used, and call EVAL to get a new
+         value.  The result will be placed in NEWLO and NEWHI, as well
+         as in OLDLO and OLDHI.  Any modifier used will be in TRUNC,
+         and the variable UNDFLG will be non zero if an undefined
+         symbol or expression was encountered.  EVAL leaves the Y reg
+         pointing just after the expression each time, so it can be
+
+
+                                    Page 43                           
+
+
+         PAL 64 Manual                                      Appendix B
+
+
+         called again and again.  Note that functions are NOT in the
+         proper environment for calling EVAL, since they are called
+         from within EVAL itself.  To call EVAL from within a function
+         would require saving and restoring OLDLO, OLDHI, DEPTH,
+         TRUNC, UNDFLG, and OPERAT on the stack.  You should thus use
+         "GETTERM", described below, for getting arguments to at-sign
+         expressions.  With EVAL and EVALST, you can easily code your
+         own pseudo-ops with .SYS.
+
+     GETTERM - PAL-12 - This routine fetches and evaluates a single
+         expression term, starting in the buffer one byte past the Y
+         register.  A term can be an entire expression if it is
+         surrounded in brackets.  This is mainly for use inside
+         at-sign user functions, as it can be called immediately after
+         the at-sign has passed control to your routine.  A single
+         term can be any of the items listed in the main documentation
+         for the assembler.  This routine leaves its result in NEWLO
+         and NEWHI, as is expected for an at-sign routine.  In fact,
+         if you set the USER vector to call this routine and return,
+         the at-sign ends up doing nothing in an expression.
+
+     NORMENT - PAL-9 - This gives the entry point in the main loop of
+         PAL processing that you can use to enter after you do any of
+         your own processing.  When PAL is ready to process a line of
+         code from source it first checks to see if the user has set
+         up a special vector for it to call first.  This vector is
+         called LINEVEC.  It checks to see if the vector has been set
+         up properly by adding the bytes of the vector and exclusive
+         oring with $A5.  This result is compared with the byte
+         LINEVCHK.  If they are the same, it is assumed the user has
+         placed a routine for processing PAL lines in a manner
+         different from the usual.  A JMP indirect is made through the
+         vector to the user routine.  The user routine gets control
+         after PAL has read in the source line and parsed it, so it
+         must call routines to do so if it wishes to act on the
+         source.  If the user routine wishes PAL to continue as usual,
+         it should JMP back to the NORMENT entry point.  This vector
+         is left mainly for use by the author in adding features to
+         PAL at a later time, even if it is burnt into ROM.  Normal
+         users should use the .SYS pseudo-op to do their own work.
+
+     USERENTER - PAL-6 - This vector actually has a JSR SWAP in it,
+         and is the user re-entry point for SYSing to after executing
+         code in BASIC from a .GTB.  After doing the swap it fall
+         through to:
+
+     ERRTRY - PAL-3 - This is the main startup point for each line of
+         assembly.  When error processing is finished, it transfers
+         here.  If you encounter your own errors, you should transfer
+         here after printing the message unless the error is a fatal
+         one, in which case you should call SWAP to restore the BASIC
+         environment and leave on your own.
+
+
+
+
+
+
+
+
+                                    Page 44                           
+
+
+         PAL 64 Manual                                      Appendix C
+
+
+
+                                   APPENDIX C
+                                PAL Memory Maps
+
+              The symbols listed above can all be found in a symbol
+         table file "PALSYM", which comes with disk PAL, that can be
+         loaded with .LST.  (This file contains several other symbols
+         as well which are not supported.)  For those with tape, they
+         are:
+
+                 UNDFLG           $45
+                 COMPOS           $46
+                 PASS             $48
+                 OP               $4B
+                 NEWLO            $4C
+                 NEWHI            $4D
+                 LENGTH           $4E
+                 PC               $4F,$50
+                 OLDLO            $52
+                 OLDHI            $53
+                 OBJBUF           $15B
+                 USER             $159
+                 LINEVEC          $2BA
+                 LINEVCHK         $2B9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 45                           
+
+
+         PAL 64 Manual                                      Appendix D
+
+
+
+                                   APPENDIX D
+                      Converting CBM/MOS Assembler to PAL
+
+              Differences between PAL and the standard assembler are
+         few, but there are some, and you will need to know them to
+         convert programs.  Here is a list of differences between the
+         MOS standard and PAL:
+
+         (1) PAL uses double quotes around character constants because
+         this is the way the CBM 64 BASIC editor works.  Single quotes
+         are used in the MOS standard.
+
+         (2) In the MOS standard, ASCII strings are included in source
+         with the .BYTE pseudo-op.  You can enter strings like:
+
+                                .BYTE 'HELLO',13
+
+         In PAL, you must use .ASC to enter such strings.  If you use
+         strings in a .BYTE statement, only the first character will
+         be included.
+
+         (3) Most MOS standard pseudo-ops are supported, but .OPT has
+         an entirely different syntax in PAL.  PAL does not provide
+         paginated listings, counting on either the CBM 64 printer or
+         a user print routine to do this.  The MOS assembler only has
+         "=", "*=", ".BYTE", ".WORD", ".END", and ".OPT".  It also has
+         a ".PAGE" pseudo-op that makes a listing go to the top of a
+         new page, which is not supported in PAL.
+
+         (4) PAL expressions may be much more complex than MOS
+         assembler expressions.  No parentheses are allowed.  MOS
+         assembler expressions evaluate left to right, just like PAL,
+         but have a poorer set of operators.  The MOS assemblers
+         includes the ability to include octal numbers, by putting an
+         at-sign in front of the number.  You can arrange this by
+         writing an octal input function for the at-sign user function
+         of PAL.  Normally, however, there is no call for octal
+         numbers in 6510 assembler, so you need not worry.  One in
+         fact wonders why such an anachronism exists in the MOS
+         standard.
+
+         (5) PAL labels may be up to eight characters long, MOS ones
+         only six.
+
+         (6) PAL has a large number of extra pseudo-ops not included
+         in the MOS standard.  If you use them, you may have trouble
+         moving your program around.
+
+         (7) In the MOS standard, no spaces are allowed in the body of
+         an operand or expression.  The first such space delimits a
+         comment.  Thus one does not need a semicolon to indicate the
+         start of a comment in the MOS assembler, unless one is
+         writing a comment line.  Be sure to insert semicolons before
+         any comments in a MOS assembler line before using PAL.
+
+
+         (8) PAL allows accumulator addressing to be specified for
+
+
+                                    Page 46                           
+
+
+         PAL 64 Manual                                      Appendix D
+
+
+         shift instructions by leaving a blank operand.  For MOS
+         standard programs, you must use the "A" addressing mode
+         convention.
+
+              If you have a program source developed with the
+         Commodore assembler, conversion is easy.  First you must load
+         the source file with the CBM mini-editor, and quit the editor
+         so that you now have a PAL type source file in BASIC source
+         format.  If you have some other form of source, conversion
+         into PAL format may be difficult.  Either the XEC command of
+         POWER, if you have it, or the CBM mini-editor may help you
+         there.
+
+              Once you have a MOS standard source file in memory some
+         minor changes must be made.  First, PAL uses double quotes
+         (") around characters and strings instead o single quotes
+         (').  You will have to convert all single quotes in
+         expressions to double ones.  It is handy at this point to
+         have some search and replace tool to work with.  There is one
+         in POWER, and public domain ones can be found in many user
+         club libraries.
+
+              You must next search for all .BYTE statements that have
+         strings of more than one character in single (now double, you
+         hope) quotes.  PAL does not support this feature of .BYTE, so
+         you must convert these statements to .ASC or combination
+         .ASC/.BYTE statements for use by PAL.
+
+              Next, you must check the use of all pseudo-ops.  .OPT
+         syntaxes differ, and file chaining or inclusion will be
+         different.  Other assemblers may have special non-standard
+         pseudo-ops just like PAL does, and you may have to duplicate
+         what they do or delete them.  Other assemblers may also not
+         signal errors when two byte values are used where a one byte
+         value is required, and you will have to fix this as well.
+
+              If your assembler differs a great deal from the
+         standard, like Peter Jennings' Micro-ADE, you will have to
+         write a conversion program.  (The author had to do this
+         once.)  If it has the same instruction format as PAL, but
+         different pseudo-ops entirely, like Carl Moser's MAE or the
+         APPLEtm Pascal assembler, you may be able to get away with
+         manual conversions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 47                           
+
+
+         PAL 64 Manual                                      Appendix E
+
+
+
+                                   APPENDIX E
+                                  Extra Files
+
+              Some extra files come on your PAL disk.  "SYMPRINT" is a
+         program to list symbol table files in sorted order on a
+         peripheral bus device.  Load and run the program to see how
+         it works.  As noted above, the file "PALDEF64", containing
+         definitions of PAL symbols, is on the disk.  You also get the
+         relocating loader, described below, in various forms.  A copy
+         of SUPERMON by Jim Butterfield and Bill Seller is included on
+         the disk.  This is public domain.  There is a BASIC program
+         called SUPERMON.I which explains the operation o this
+         program.  In addition, you will find the source to the PAL
+         relocating loader, which you may use but not distribute to
+         the public in source form.  It will give you an idea of the
+         nature of a medium sized PAL program.  The source for the
+         FLOADER, in "FLOAD.PAL" shows the use of the .BAS pseudo-op.
+
+              The Rev. Jim Strasma of TPUG is a PAL user, and he has
+         been kind enough to provide an MAE to PAL converter and a PAL
+         unassembler.  These are public domain, but are placed on the
+         disk.  Thanks to Jim.  Unfortunately, there is no
+         documentation at this time.
+
+              There may be other programs on the disk which you may
+         wish to play with, as people are always creating new
+         interesting ways to use PAL.  In addition, other users of PAL
+         will no doubt from time to time be making interesting
+         programs that you may come upon.  Hope you enjoy them.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 48                           
+
+
+         PAL 64 Manual                                      Appendix F
+
+
+
+                                   APPENDIX F
+                           The Relocatable Object PAL
+
+              Quite often it is desirable to have a program that you
+         can load and run anywhere in the CBM 64's memory.  Any normal
+         6510 program will, however, contain JMPs, JSRs and data
+         references to within the program that are absolute and can
+         not be moved about.  A program containing these instructions
+         can only run in the piece of memory it is intended to run in.
+         Normally with PAL, this is not a problem, since all you need
+         do to make the program run in any location you desire is to
+         reassemble it with a different starting location.  If your
+         program is short, this can be done quickly and easily right
+         in memory, so there is little need to do anything else.
+
+              There are still reasons for wanting to be able to
+         relocate your program without assembling it again, though.
+         If your program is long, it might take some time to assemble.
+         (PAL itself takes two minutes on a standard CBM with a disk
+         drive.)  This is too long to wait just to move code around a
+         bit.  If you want a program that just grabs a piece of
+         available memory, you will not be able to predict where that
+         memory is in advance, and thus need something that can move
+         your program.  Most important, though, is the case that
+         arises when the person who wishes to move the program does
+         not have the source.  You might wish to give a program out to
+         people without giving them the source files.  If you do this,
+         normally you would have to provide versions of the program to
+         run on machines with all the different memory arrangements
+         that exist and to suit everybody's taste as to where the
+         program should sit.  This is almost impossible to do.
+
+              Fortunately, a version of PAL exists that outputs the
+         object file in a form that a simple program, called the
+         loader, can use to relocate the object anywhere in memory.
+         This version of PAL is identical in every way with the normal
+         version, with the exception that it outputs object code in a
+         different manner.  It is expected that the average user will
+         develop a program with the normal PAL, and then assemble it
+         with the relocatable output version to produce the final
+         form.  This version of pal, called RPAL, is slightly larger
+         than PAL, and it is not expected that anybody will burn it
+         into ROM.  RPAL is provided in relocatable, ready to run form
+         (of course), in a file called "RPAL".  It can be loaded the
+         same way normal PAL is.  SYS 700 works to call this version
+         as well.
+
+              Setting up object code so that it can be relocated is
+         not as easy a task as it seems.  This is because some
+         instructions and references must be relocated while similar
+         ones must not.  For example, if you had a JSR (Jump to
+         SubRoutine) to a CBM 64 ROM subroutine, the address used
+         would not change no matter where your program is running.  On
+         the other hand, a JSR to a routine inside your program should
+         be changed as your program moves, for the subroutine itself
+         will move.
+
+
+
+                                    Page 49                           
+
+
+         PAL 64 Manual                                      Appendix F
+
+
+              Things get more complex than this, however.  You might
+         want to call a routine from a jump table by pushing its
+         address minus one onto the stack and doing an RTS.  To load
+         the address you might have to do something like this:
+
+                                LDA #<ROUTINE-1
+
+              The value loaded must be relocated, but it is only half
+         of a full sixteen bit value.  This means that the whole value
+         must be kept around, and properly truncated when i comes time
+         to relocate the program.  The same applies to data in .BYTE
+         lines.
+
+             To help in relocating, the RPAL expression evaluator
+         keeps around flags to work out whether an expression is
+         relocatable or not.  If an instruction that produces code
+         uses a relocatable expression, then the bytes output that
+         come from that expression must be marked as relocatable in
+         the object file.  In addition, it must be marked how the
+         expression should be relocated, because it might be necessary
+         to truncate the value as in the case of the LDA shown above.
+         To do this, expressions are tagged as either relocatable or
+         absolute.  When two expressions are combined with an
+         operator, such as a plus sign, the tag of the resulting value
+         must be calculated.
+
+              First of all, the program counter, indicated by star (*)
+         is a relocatable term.  In addition, any label whose value
+         lies between the lowest byte of output code in the program
+         and the highest byte of output code in the program is
+         relocatable.  All other terms are absolute.  This means that
+         you may not try and refer to a location in the program with a
+         decimal or hexadecimal number.  If you wish for some reason
+         to reference into the program this way, you should assign a
+         symbol to the start location of the program and add your
+         offset to it.  Furthermore you should note that if you assign
+         a label to something relocatable that is outside the normal
+         bounds of the program, RPAL will (incorrectly) assume it is
+         an absolute symbol.  A typical error might occur if you try
+         something like:
+
+                             TABLE = PROGEND + $100
+
+         to point to some table beyond the program.  Sorry, RPAL will
+         think that TABLE is an absolute symbol and references to it
+         will no be relocated.
+
+              Most operators produce absolute results no matter what
+         type their operand is.  Use of relocatable values with these
+         operators should give an error, but it currently does not.
+         These include multiply (*), and (&), or (!), exclusive or
+         (^), left shift (<) and right shift (>).  You should note
+         that this means the expression "LABEL>8" is no longer the
+         same as the ">LABEL" expression using the upper half
+         modifier.
+
+              The plus operator will produce a relocatable result if
+         one of the two operands is relocatable.  The addition of two
+
+
+                                    Page 50                           
+
+
+         PAL 64 Manual                                      Appendix F
+
+
+         relocatable objects should signal an error, but does not.
+         Subtraction produces a relocatable result if one of the
+         operands is relocatable and the other is absolute.  An
+         absolute result will arise if both operands are relocatable,
+         as the difference between two relocatable values is the same
+         no matter where the program is loaded.  Naturally, if both
+         operands of either of these two operators are absolute, then
+         the result is absolute.  In addition, the negation operator
+         (unary -) will produce a relocatable value if the value being
+         negated is relocatable.
+
+              Use of the expression modifiers "<", ">", and "!" does
+         not affect whether an expression is relocatable.  As noted
+         above, special attention must be paid with "<" and ">"
+         because the whole value being truncated must be left in the
+         object file.  You should not use ">"> and "<" in any place
+         that does not generate a one byte value.  If you really wish
+         to generate something like ".WORD <VALUE" you should use
+         ".BYTE <VALUE,0" for proper relocation.
+
+              RPAL listings are generically identical to those of PAL,
+         but RPAL replaces the space immediately after the address on
+         any line with a dash (-) if an expression on that line was
+         relocatable.  In general, you can origin you RPAL listings
+         anywhere you like above $100, but the range of locations
+         generated by the assembly should not overlap with any
+         locations you use in the program.  This means that you should
+         not normally origin the program up in the CBM 64 ROM area or
+         down in the stack area.  A value of $1000 is suggested as a
+         good one to use.  Like PAL, the default origin in RPAL is
+         $C000, which you may use if you are not making absolute
+         references into that buffer.
+
+              Naturally, the object output conventions in RPAL are
+         different, since that is what RPAL is all about.  If you use
+         "OO" object mode, this will work exactly as it does in PAL.
+         This allows you to do quick testing and assembly right to
+         memory with RPAL.  All other forms of object output provide
+         relocatable code.  If you wish (as one normally does) to
+         place the object code in a disk file, follow the same
+         convention as in PAL, which is to open the file with a BASIC
+         OPEN statement (program file recommended as before) and use a
+         ".OPT O#" directive to indicate where the object file is.
+         Object output in this manner gets the start address of the
+         program (i.e., where you happened to assemble it) put out in
+         the first two bytes.  This is normally ignored by the loader,
+         but may be of use in examining the file.  Other object modes
+         do not get these two bytes.
+
+              The next (and perhaps first, depending on the mode) byte
+         output is a flag indicating we are dealing with a relocatable
+         object file.  This flag will indicate which version of the
+         loader should be used to relocate this file.  Right now there
+         is only one format, and the code byte for this is $81 and use
+         the old format if they do, however.  Older PET/CBM versions
+         of RPAL do not output this byte so there may be problems with
+         files created on those machines.
+
+
+
+                                    Page 51                           
+
+
+         PAL 64 Manual                                      Appendix F
+
+
+              The next two bytes output give the length of the
+         program, which is calculated by subtracting the lowest
+         address in the program from the highest address in the
+         program plus one.  This is of use to the loader when loading
+         a program to fit up against a high address like the top of
+         memory.  From this point, the relocatable object bytes are
+         output in an undocumented format.  These bytes are sent out
+         the peripheral bus in the case of an "O#" object directive,
+         buffered beyond the end of the source if a "O" mode is being
+         used, or sent out the user routine (one byte at a time with
+         the byte in the accumulator) in the case of the "O=addr"
+         mode.  Printing modes are not affected.
+
+              Naturally, you can't load one of these files with the
+         CBM 64 "LOAD" command.  If you do, the object will come into
+         memory, but not in any form you can run.  You must use the
+         PAL relocating loader to put them in their proper place.  To
+         indicate that these files are not runnable, a good convention
+         is to terminate their names with some suffix like ".R".  If
+         you don't like this (and there are lots of reasons for not
+         liking that) you can make these files of the sequential or
+         user type.
+
+         .
+         .
+         .
+         ...p 78,79 missing from PAL instructions
+         .
+         .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 52                           
+
+
+         PAL 64 Manual                                      Appendix F
+
+
+         4) Test your program by typing:
+
+              LOAD "0:PROG.RUN",8
+              RUN
+
+         Assuming there was enough memory, and i is correct, your
+         program should now run properly.
+
+              In addition, there is another version of the loader that
+         will load directly out of a disk file.  This is called the
+         FLOADER, for File LOADER.  If you load it and run it, it will
+         give you instructions.  One thing it asks for is the file
+         name.  If your file name does not have a suffix on it of the
+         form ",T" where T is a file type, it will append ",P,R" to
+         the name.  This means it expects the object to be in a PGM
+         file.  The FLOADER gives you the option of having the program
+         load at the top of memory like the MLOADER does, or stating
+         explicitly where the program is to run.  You may even have it
+         load at a different place from where it is to run if you plan
+         to do something unusual with it like burn it into EPROM.  The
+         FLOADER will, if i makes sense, give you the option of
+         executing the new program at its first address.
+
+              You can modify the source of the loader to your own
+         tastes.  You need simply change the internal routines that
+         initialize, terminate and fetch the next byte in memory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 53                           
+
+
+         PAL 64 Manual                             WARRANTY DISCLAIMER
+
+
+
+
+
+
+                              WARRANTY DISCLAIMER
+
+
+
+              All Pro-Line Software Ltd. computer programs, whether
+         supplied on magnetic media such as but not limited to
+         cassette tapes or diskettes or in any other form, any
+         associated devices and any instructions or manuals, are sold
+         on an "as is" basis without a warranty of any kind expressed
+         or implied.  Pro-Line Software Ltd. does not warrant the
+         fitness of any program for any purpose nor does Pro-Line
+         Software Ltd. warrant the accuracy, quality or freedom from
+         errors o any programs, devices, instructions, or manuals.
+
+              Pro-Line Software Ltd., their distributors, agents and
+         retailers assume no responsibility for any consequential,
+         incidental or other liability arising from the use, the
+         inability to use or the attempted use of any program nor for
+         any lost profit or any lost savings however incurred.
+
+
+
+                              *  *  *  *  *  *  *
+
+
+
+
+
+
+                 Made in Canada by
+                 PRO-LINE SOFTWARE LTD., MISSISSAUGA, ONTARIO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    Page 54                           
+
+
