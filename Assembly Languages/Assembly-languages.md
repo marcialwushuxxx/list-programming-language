@@ -30,7 +30,7 @@ As linguagens Assembly correspondem diretamente a uma linguagem de máquina, de 
 
 # Single target assemblers
 
-**6502 assemblers**
+## **6502 assemblers**
 
 | Assembler | License | Instruction set | Host platform |
 |---------- | ------- | --------------- | ------------- |
@@ -41,6 +41,34 @@ As linguagens Assembly correspondem diretamente a uma linguagem de máquina, de 
 |vasm       |Free       |MOS Technology 6502|various|
 |TMPx       |Proprietary|MOS Technology 6502|various|
 |S-C Assembler II|Proprietary|MOS Technology 6502|Apple II|
-|
+|ORCA/M |Proprietary|MOS Technology 6502, WDC 65C02|Apple II series|
+|Ophis |MIT|MOS Technology 6502, WDC 65C02, 4502/4510 (experimental)|various|
+|NESASM	|?|Ricoh 2A03|DOS|
+|MOSASM|GNU GPL|MOS Technology 6502|various|
+|Merlin|Proprietary|MOS Technology 6502, WDC 65C02, WDC 65816/65802|Apple II series, Commodore 64, Commodore 128|
+|Magic ASM|?|HuC6280|DOS|
+|MAE|?|MOS Technology 6502, WDC 65C02, WDC 65816/65802|Atari 8-bit family|
+|MADS|Public domain|MOS Technology 6502, WDC 65816/65802|various|
+|Macross|MIT|MOS Technology 6502|various|
+|MAC/65|Proprietary|MOS Technology 6502, WDC 65C02|Atari 8-bit family|
+|Lisa|Proprietary|MOS Technology 6502|Apple II series|
+|Kick Assembler|Proprietary|MOS Technology 6502|various||
+|French Silk|Proprietary| MOS Technology 6502  |Commodore 64|
+|dreamass|GNU GPL|MOS Technology 6502, WDC 65816/65802|various|
+|dasm|GNU GPL|MOS Technology 6502, others|various|
+|CSC6502|Proprietary|MOS Technology 6502, WDC 65C02|various|
+|CA65|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|C64List|Proprietary|MOS Technology 6502|Commodore 64|
+|ATASM|GNU GPL|MOS Technology 6502|various|
+|Atari Macro Assembler|Proprietary|MOS Technology 6502|Atari 8-bit family|
+|Atari Assembler Editor|Proprietary	|MOS Technology 6502|Atari 8-bit family|
+|ASM6|Public domain|MOS Technology 6502|various|
+|AS65|Proprietary|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|ACME|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|64tass|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
 
+## **680x0 assemblers**
 
+|Assembler|Open source|License|Instruction set| Host paltform| Developmentactive|
+|-------- | --------- | ----- | ------------- | ------------ | ---------------- |
+|A68K|No|Free|Motorola 680x0|Commodore Amiga|No|
