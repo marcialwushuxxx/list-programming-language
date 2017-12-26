@@ -48,26 +48,26 @@ As linguagens Assembly correspondem diretamente a uma linguagem de máquina, de 
 |[NESASM](https://github.com/toastynerd/nesasm)	|?|Ricoh 2A03|DOS|
 |[MOSASM](https://github.com/majestic53/mosasm)|GNU GPL|MOS Technology 6502|various|
 |[Merlin](https://archive.org/details/MerlinProMacroAssembler)|Proprietary|MOS Technology 6502, WDC 65C02, WDC 65816/65802|Apple II series, Commodore 64, Commodore 128|
-|Magic ASM|?|HuC6280|DOS|
-|MAE|?|MOS Technology 6502, WDC 65C02, WDC 65816/65802|Atari 8-bit family|
-|MADS|Public domain|MOS Technology 6502, WDC 65816/65802|various|
-|Macross|MIT|MOS Technology 6502|various|
-|MAC/65|Proprietary|MOS Technology 6502, WDC 65C02|Atari 8-bit family|
-|Lisa|Proprietary|MOS Technology 6502|Apple II series|
-|Kick Assembler|Proprietary|MOS Technology 6502|various||
-|French Silk|Proprietary| MOS Technology 6502  |Commodore 64|
-|dreamass|GNU GPL|MOS Technology 6502, WDC 65816/65802|various|
-|dasm|GNU GPL|MOS Technology 6502, others|various|
-|CSC6502|Proprietary|MOS Technology 6502, WDC 65C02|various|
-|CA65|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
-|C64List|Proprietary|MOS Technology 6502|Commodore 64|
-|ATASM|GNU GPL|MOS Technology 6502|various|
-|Atari Macro Assembler|Proprietary|MOS Technology 6502|Atari 8-bit family|
-|Atari Assembler Editor|Proprietary	|MOS Technology 6502|Atari 8-bit family|
-|ASM6|Public domain|MOS Technology 6502|various|
-|AS65|Proprietary|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
-|ACME|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
-|64tass|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|**Magic ASM**|?|HuC6280|DOS|
+|[MAE](http://mixinc.net/atari/mae.htm)|?|MOS Technology 6502, WDC 65C02, WDC 65816/65802|Atari 8-bit family|
+|[MADS](http://mads.atari8.info/)|Public domain|MOS Technology 6502, WDC 65816/65802|various|
+|[Macross](https://github.com/Museum-of-Art-and-Digital-Entertainment/macross)|MIT|MOS Technology 6502|various|
+|[MAC/65](https://en.wikipedia.org/wiki/MAC/65)|Proprietary|MOS Technology 6502, WDC 65C02|Atari 8-bit family|
+|[Lisa](https://en.wikipedia.org/wiki/Lazer%27s_Interactive_Symbolic_Assembler)|Proprietary|MOS Technology 6502|Apple II series|
+|[Kick Assembler](http://www.theweb.dk/KickAssembler/)|Proprietary|MOS Technology 6502|various||
+|**French Silk**|Proprietary| MOS Technology 6502  |Commodore 64|
+|[dreamass](https://web.archive.org/web/20120416183515/https://developer.berlios.de/projects/rrtools/)|GNU GPL|MOS Technology 6502, WDC 65816/65802|various|
+|[dasm](http://dasm-dillon.sourceforge.net/)|GNU GPL|MOS Technology 6502, others|various|
+|**CSC6502**|Proprietary|MOS Technology 6502, WDC 65C02|various|
+|[CA65](http://www.cc65.org/doc/ca65.html)|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|[C64List](http://commodoreserver.com/Downloads.asp)|Proprietary|MOS Technology 6502|Commodore 64|
+|[ATASM](http://atari.miribilist.com/atasm/)|GNU GPL|MOS Technology 6502|various|
+|[Atari Macro Assembler](https://en.wikipedia.org/wiki/Atari_Macro_Assembler)|Proprietary|MOS Technology 6502|Atari 8-bit family|
+|[Atari Assembler Editor](https://en.wikipedia.org/wiki/Atari_Assembler_Editor)|Proprietary	|MOS Technology 6502|Atari 8-bit family|
+|[ASM6](http://3dscapture.com/NES/)|Public domain|MOS Technology 6502|various|
+|**AS65**|Proprietary|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|[ACME](http://sourceforge.net/projects/acme-crossass/)|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
+|[64tass](http://sourceforge.net/projects/tass64/develop)|GNU GPL|MOS Technology 6502, WDC 65C02, WDC 65816/65802|various|
 
 ## **680x0 assemblers**
 
