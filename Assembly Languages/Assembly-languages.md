@@ -8,7 +8,7 @@ As linguagens Assembly correspondem diretamente a uma linguagem de máquina, de 
 
 # Comparação de Assemblers
 
-Esta é uma lista de assemblers: programas de computador que traduzem ("assembler") código fonte de linguagem assembly em programas binários.
+Esta é uma [lista de assemblers](https://ipfs.io/ipfs/QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco/wiki/Comparison_of_assemblers.html): programas de computador que traduzem ("assembler") código fonte de linguagem assembly em programas binários.
 
 
 ## Terminolgia
