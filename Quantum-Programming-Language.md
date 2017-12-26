@@ -13,3 +13,5 @@ Uma vez que toda máquina quântica deve ser controlada por dispositivo clássic
 - [Multi-Paradigm languages](Multi-Paradigm-languages.md)
 
 - [List of QC simulators](List-of-QC-simulators.md)
+
+- [Awesome Quantum Machine Learning](quantum-machine-learning.md)
