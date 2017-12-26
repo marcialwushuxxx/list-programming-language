@@ -2,7 +2,9 @@
 
 As linguagens Assembly correspondem diretamente a uma linguagem de máquina, de modo que as instruções do código da máquina aparecem de uma forma não compreensível por humanos. As linguagens Assembly permitem que os programadores usem endereços simbólicos, que o assembler converte em endereços absolutos. A maioria dos assemblers também suporta macros e constantes simbólicas.
 
-<a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Assembly%20Languages/Awesome-Assembly.md" target="_blank">Awesome Assembly List</a>
+![](http://www.dsc.ufcg.edu.br/~pet/jornal/maio2014/images/materias/historia_da_computacao/img2.png)
+
+<a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Assembly%20Languages/Awesome-Assembly.md" target="_blank">**Awesome Assembly List**</a>
 
 ## Terminolgia
 
