@@ -4,7 +4,12 @@ As linguagens Assembly correspondem diretamente a uma linguagem de máquina, de 
 
 ![](http://www.dsc.ufcg.edu.br/~pet/jornal/maio2014/images/materias/historia_da_computacao/img2.png)
 
-<a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Assembly%20Languages/Awesome-Assembly.md" target="_blank">**Awesome Assembly List**</a>
+## <a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Assembly%20Languages/Awesome-Assembly.md" target="_blank">**Awesome Assembly List**</a>
+
+# Comparação de Assemblers
+
+Esta é uma lista de assemblers: programas de computador que traduzem ("assembler") código fonte de linguagem assembly em programas binários.
+
 
 ## Terminolgia
 
