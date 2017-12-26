@@ -2,9 +2,14 @@
 
 **Esta é uma lista de linguagens de programação e marcação, agrupadas por tipo**.
 
+[![GitHub issues](https://img.shields.io/github/issues/AnanthaRajuC/List-of-programming-languages-by-type.svg)](https://github.com/marcialwushuxxx/list-programming-language/issues)
+[![GitHub forks](https://img.shields.io/github/forks/AnanthaRajuC/List-of-programming-languages-by-type.svg)](https://github.com/marcialwushuxxx/list-programming-language/network)
+[![GitHub stars](https://img.shields.io/github/stars/AnanthaRajuC/List-of-programming-languages-by-type.svg)](https://github.com/marcialwushuxxx/list-programming-language/stargazers)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/AnanthaRajuC/List-of-programming-languages-by-type.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+
 Porque não existe um esquema de classificação abrangente para linguagens de programação, em muitos casos, uma linguagem será listada em vários tipos.
 
-- [Array languages](Array-languages.md)
+- <a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Array-languages.md" target="_blank">Array languages</a>
 - [Assembly languages](Assembly-languages.md)
 - [Audio programming languages](Audio-programming-languages.md)
 - [Authoring languages](Authoring-languages.md)
