@@ -1,4 +1,4 @@
-# Awesome R
+# <a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/README.md" target="_blank">Awesome R</a>
 
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
@@ -601,6 +601,7 @@ Where to discover new R-esources.
 * [awesome-awesomeness](https://github.com/bayandin/awesome-awesomeness)
 * [lists](https://github.com/jnv/lists)
 * [awesome-rshiny](https://github.com/grabear/awesome-rshiny)
+* [notabug.org](https://notabug.org/koz.ross/awesome-c/src/master/README.md)
 
 # Contributing
 Your contributions are always welcome!
