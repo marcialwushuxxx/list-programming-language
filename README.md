@@ -10,7 +10,7 @@
 Porque não existe um esquema de classificação abrangente para linguagens de programação, em muitos casos, uma linguagem será listada em vários tipos.
 
 - <a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Array%20Languages/Array-languages.md" target="_blank">Array languages</a>
-- [Assembly languages](Assembly-languages.md)
+- <a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/Assembly%20Languages/Assembly-languages.md" target="_blank">Assembly languages</a>
 - [Audio programming languages](Audio-programming-languages.md)
 - [Authoring languages](Authoring-languages.md)
 - [BASIC dialects]()
@@ -80,3 +80,8 @@ Porque não existe um esquema de classificação abrangente para linguagens de p
 - [Visual languages]()
 - [Wirth languages]()
 - [XML-based languages]()
+
+----------
+
+
+[![Creative Commons License](http://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
