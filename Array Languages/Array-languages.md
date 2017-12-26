@@ -36,7 +36,7 @@
 - O-Matrix
 - Perl Data Language
 - Q (programming language from Kx Systems)
-- R
+- <a href="https://github.com/marcialwushuxxx/list-programming-language/blob/master/R.md" target="_blank">R</a>
 - Renjin
 - Rlab
 - S
