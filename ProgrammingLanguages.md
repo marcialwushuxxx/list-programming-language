@@ -432,3 +432,350 @@ Broken links:
 <a href="https://web.archive.org/web/20160307000748/http://www.informatik.uni-kiel.de/inf/Kluge/KiR/" target="_top">KiR</a> at Kiel.
 <p></p>
 -- <a class="foswikiNewLink" href="/web/20160307000748/http://foswiki.cs.uu.nl/foswiki/bin/edit/Main/FrankAtanassow?topicparent=Techno.ProgrammingLanguages" rel="nofollow" title="Create this topic">FrankAtanassow</a> - 23 Sep 2002 </div>
+
+
+
+# ProgrammingLanguageTheoryTextsOnline
+
+<div class="foswikiTopic"><a name="foswikiTOC"></a><div class="foswikiToc"> <ul>
+<li> <a href="#Obligatory_plea"> Obligatory plea </a>
+</li> <li> <a href="#Reference_texts"> Reference texts </a>
+</li> <li> <a href="#Notes_and_tutorials"> Notes and tutorials </a>
+</li> <li> <a href="#Other_texts"> Other texts </a>
+</li> <li> <a href="#Resources"> Resources </a>
+</li> <li> <a href="#Submission_guidelines"> Submission guidelines </a>
+</li> <li> <a href="#Administration"> Administration </a>
+</li></ul> 
+</div>
+<p></p>
+This is a collection of programming language theory texts and resources, all
+of which are <strong>freely available</strong> over the Internet.
+<p></p>
+Many valuable reference texts on programming language theory, previously only
+available in paper form, have in recent years become publicly accessible from
+the net. I list here the ones I know of; below that you will also find a much
+broader list of lecture notes and tutorials, other interesting reading, plus a
+collection of related resources.
+<p></p>
+<h1><a name="Obligatory_plea"></a>  Obligatory plea </h1>
+<p></p>
+If you know of any other texts or resources which might belong here, please
+add them to this list by editing this page.
+(Does your submission belong in this list? See the <a href="#SubmissionGuidelines" class="foswikiCurrentTopicLink">#SubmissionGuidelines</a>.)
+<p></p>
+I hope other authors will also make an effort, when possible, to get their
+books online, especially if the book goes out of print.
+<p></p>
+Part of the reason PL theory and advanced programming languages seem
+impenetrable to other communities is that learning materials are hard to
+obtain, or demand a sizeable investment of resources (time, money, ...) even
+if the potential reader is only exploring the subject.
+<p></p>
+<a name="ReferenceTexts"></a>
+<h1><a name="Reference_texts"></a>  Reference texts </h1>
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www-swiss.ai.mit.edu/~hal/hal.html" target="_top">Harold Abelson</a> and <a href="https://web.archive.org/web/20160426010223/http://www-swiss.ai.mit.edu/~gjs/gjs.html" target="_top">Gerald Jay Sussman</a> with Julie Sussman.
+<strong>Structure and Interpretation of Computer Programs.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://mitpress.mit.edu/sicp/full-text/book/book.html" target="_top">MIT</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.isg.sfu.ca/~hak/" target="_top">Hassan Ait-Kaci</a>.
+<strong>Warren's Abstract Machine: A Tutorial Reconstruction.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.isg.sfu.ca/~hak/documents/wam.html" target="_top">link</a>)
+<p></p>
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.unibo.it/~asperti/" target="_top">Andrea Asperti</a> and <a href="https://web.archive.org/web/20160426010223/http://www.di.ens.fr/users/longo" target="_top">Giussepe Longo</a>.
+<strong>Categories, Types and Structures. An introduction to Category Theory for the working computer scientist.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.di.ens.fr/users/longo/download.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.kun.nl/~henk/" target="_top">Henk Barendregt</a>.
+<strong>Lambda Calculi with Types.</strong>
+(<a href="https://web.archive.org/web/20160426010223/ftp://ftp.cs.kun.nl/pub/CompMath.Found/HBKJ.ps.Z" target="_top">compressed PS</a>)
+<p></p>
+--.
+<strong>The Lambda Calculus.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.elpress.com/readittoc.jsp?Book=0444875085" target="_top">currently broken link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://euclid.math.mcgill.ca/~barr/" target="_top">Michael Barr</a> and <a href="https://web.archive.org/web/20160426010223/http://www.cwru.edu/artsci/math/wells/" target="_top">Charles Wells</a>.
+<strong>Toposes, Triples and Theories.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cwru.edu/artsci/math/wells/pub/ttt.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.thoralf.uwaterloo.ca/" target="_top">Stanley N. Burris</a> and H.P. Sankappanavar.
+<strong>A Course in Universal Algebra.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.thoralf.uwaterloo.ca/htdocs/ualg.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.lsv.ens-cachan.fr/~comon/?lang=en" target="_top">Hubert Comon</a>, <strong>et al.</strong>
+<strong>Tree Automata Techniques and Applications.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.grappa.univ-lille3.fr/tata/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.math.uni-hamburg.de/home/diestel/" target="_top">Reinhard Diestel</a>.
+<strong>Graph Theory.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.math.uni-hamburg.de/home/diestel/books/graph.theory/" target="_top">link</a>) 
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.engr.uky.edu/~raphael/" target="_top">Raphael Finkel</a>.
+<strong>Advanced Programming Language Design.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.awprofessional.com/catalog/product.asp?product_id={92E30B39-5D91-45F9-9919-D202BE6341F9}&amp;selectDescTypeId={A80972E0-1077-4518-954C-44E43E341DF7}" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.vu.nl/~dick/" target="_top">Dick Grune</a> and <a href="https://web.archive.org/web/20160426010223/http://www.cs.vu.nl/~ceriel/" target="_top">Ceriel J.H. Jacobs</a>.
+<strong>Parsing Techniques - A Practical Guide.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.vu.nl/~dick/PTAPG.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www-2.cs.cmu.edu/~rwh/" target="_top">Robert Harper</a>.
+<strong>Programming Languages: Theory and Practice. (Draft)</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www-2.cs.cmu.edu/~rwh/plbook/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cogs.susx.ac.uk/users/matthewh/" target="_top">Matthew Hennessy</a>.
+<strong>Semantics of Programming Languages.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cogs.susx.ac.uk/users/matthewh/semnotes.ps.gz" target="_top">gzipped PS/2up</a>, <a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/2000/Semantics/" target="_top">Andrew Pitts' course material</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.diku.dk/~neil/" target="_top">N.D. Jones</a>, C.K. Gomard and <a href="https://web.archive.org/web/20160426010223/http://www.dina.dk/~sestoft/" target="_top">P. Sestoft</a>.
+<strong>Partial Evaluation and Automatic Program Generation.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.dina.dk/~sestoft/pebook/pebook.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://web.comlab.ox.ac.uk/oucl/people/carroll.morgan.html" target="_top">Carroll Morgan</a>.
+<strong>Programming from Specifications.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://web.comlab.ox.ac.uk/oucl/publications/books/PfS/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://kurt.cla.kobe-u.ac.jp/~hayashi/index-english.html" target="_top">Susumu Hayashi</a> and <a href="https://web.archive.org/web/20160426010223/http://www602.math.ryukoku.ac.jp/~nakano" target="_top">Hiroshi Nakano</a>.
+<strong>PX: A Computational Logic.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www602.math.ryukoku.ac.jp/~nakano/papers/freePXbook.pdf" target="_top">PDF</a>, <a href="https://web.archive.org/web/20160426010223/http://kurt.cla.kobe-u.ac.jp/~hayashi/PXbook.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.daimi.au.dk/~hrn/" target="_top">Hanne Riis Nielson</a> and <a href="https://web.archive.org/web/20160426010223/http://www.daimi.au.dk/~fn/" target="_top">Flemming Nielson</a>.
+<strong>Semantics With Applications: A Formal Introduction.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.daimi.au.dk/~bra8130/Wiley_book/wiley.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/~bengt/" target="_top">Bengt Nordstrom</a> and <a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/~kentp/" target="_top">Kent Petersson</a> and <a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/~smith/" target="_top">Jan M. Smith</a>.
+<strong>Programming in Martin-Lof's Type Theory: An Introduction.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/Cs/Research/Logic/book/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://research.microsoft.com/Users/simonpj/" target="_top">Simon Peyton Jones</a> and David R. Lester.
+<strong>Implementing functional languages: a tutorial.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.research.microsoft.com/Users/simonpj/Papers/papers.html" target="_top">link</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.research.microsoft.com/Users/simonpj/Papers/student.ps.gz" target="_top">compressed PS</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.research.microsoft.com/Users/simonpj/Papers/pjlester-1.11.tar.Z" target="_top">sources</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.kun.nl/~rinus/" target="_top">Rinus Plasmeijer</a> and <a href="https://web.archive.org/web/20160426010223/http://www.cs.kun.nl/~marko/" target="_top">Marko van Eekelen</a>.
+<strong>Functional Programming and Parallel Graph Rewriting.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.kun.nl/~clean/Manuals/Addison__Wesley_book/addison__wesley_book.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.jhu.edu/~scott/" target="_top">Scott F. Smith</a>.
+<strong>Programming Languages.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.jhu.edu/~scott/plbook/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.dcs.qmw.ac.uk/~pt/" target="_top">Paul Taylor</a>.
+<strong>Practical Foundations of Mathematics.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.dcs.qmw.ac.uk/~pt/Practical_Foundations/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.ukc.ac.uk/people/staff/sjt/" target="_top">Simon Thompson</a>.
+<strong>Type Theory and Functional Programming.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.ukc.ac.uk/people/staff/sjt/TTFP/" target="_top">link</a>)
+<p></p>
+<a name="NotesAndTutorials"></a>
+<h1><a name="Notes_and_tutorials"></a>  Notes and tutorials </h1>
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.luca.demon.co.uk/" target="_top">Luca Cardelli</a> and <a href="https://web.archive.org/web/20160426010223/http://www.cs.brown.edu/people/pw/" target="_top">Peter Wegner</a>.
+<strong>On understanding types, data abstraction and polymorphism.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://research.microsoft.com/Users/luca/Papers/OnUnderstanding.ps" target="_top">PS/letter</a>,
+<a href="https://web.archive.org/web/20160426010223/http://research.microsoft.com/Users/luca/Papers/OnUnderstanding.pdf" target="_top">PDF/letter</a>,
+<a href="https://web.archive.org/web/20160426010223/http://research.microsoft.com/Users/luca/Papers/OnUnderstanding.A4.ps" target="_top">PS/A4</a>,
+<a href="https://web.archive.org/web/20160426010223/http://research.microsoft.com/Users/luca/Papers/OnUnderstanding.A4.pdf" target="_top">PDF/A4</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.di.ens.fr/~castagna/" target="_top">Giuseppe Castagna</a>.
+<strong>Subtyping and Object-oriented Programming</strong>.
+(<a href="https://web.archive.org/web/20160426010223/http://www.di.ens.fr/~castagna/TEACHING/dea_ens.html" target="_top">course page</a>,
+<a href="https://web.archive.org/web/20160426010223/ftp://ftp.ens.fr/pub/dmi/users/castagna/TEACHING/dea-spp.ps.gz" target="_top">gzipped PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.cornell.edu/home/rc/" target="_top">Robert Constable</a>.
+<strong>Typed Logic.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.cornell.edu/cs671-fa99/" target="_top">link</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.cornell.edu/cs671-fa99/typed%20logic/index.html" target="_top">HTML</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.cornell.edu/cs671-fa99/postscript%20files/mark99.ps" target="_top">PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cis.upenn.edu/~jean/home.html" target="_top">Jean H. Gallier</a>.
+<strong>Constructive Logics. Part I: A Tutorial on Proof Systems and Typed lambda-Calculi.</strong>
+(<a href="https://web.archive.org/web/20160426010223/ftp://ftp.cis.upenn.edu/pub/papers/gallier/conslog1.dvi.Z" target="_top">compressed DVI</a>)
+<p></p>
+--.
+<strong>Constructive Logics. Part II: Linear Logic and Proof Nets.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cis.upenn.edu/~jean/gallier-old-pubs.html" target="_top">link</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.cis.upenn.edu/~jean/gallier-old-pubs.html" target="_top">compressed DVI</a>,
+<a href="https://web.archive.org/web/20160426010223/ftp://ftp.cis.upenn.edu/pub/papers/gallier/conslog2.ps.Z" target="_top">compressed PS</a>)
+<p></p>
+--.
+<strong>On the Correspondence between Proofs and lambda-Terms.</strong>
+(<a href="https://web.archive.org/web/20160426010223/ftp://ftp.cis.upenn.edu/pub/papers/gallier/cahiers.ps.Z" target="_top">compressed PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/users/mjcg/" target="_top">Mike Gordon</a>.
+<strong>Introduction to Functional Programming.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/FuncProg/FuncProg.html" target="_top">link</a>)
+<p></p>
+--.
+<strong>Specification and Verification I.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/2000/SpecVer1/" target="_top">link - 2000 ed.</a>)
+<p></p>
+--.
+<strong>Specification and Verification II.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/1999/SpecVer2/" target="_top">link - 1999 ed.</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/users/jrh" target="_top">John Harrison</a>.
+<strong>Introduction to Functional Programming (1996/7).</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/Lectures/funprog-jrh-1996/index.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.bham.ac.uk/~axj" target="_top">Achim Jung</a> and <a href="https://web.archive.org/web/20160426010223/http://www.dcs.ed.ac.uk/home/samson" target="_top">Samson Abramsky</a>.
+Domain Theory.
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.bham.ac.uk/~axj/pub/papers/handy.ps.gz" target="_top">gzipped PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cwi.nl/~kurz" target="_top">Alexander Kurz</a>.
+<strong>Coalgebras and Modal Logic.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cwi.nl/~kurz/cml-esslli01.html" target="_top">link</a>)
+<p></p>
+Per Martin-Lof.
+<strong>On the Meanings of the Logical Constants and the Justifications of the Logical Laws.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.cornell.edu/cs671-fa99/martin.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/~bengt/" target="_top">Bengt Nordstrom</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/~kentp/" target="_top">Kent Petersson</a> and
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.chalmers.se/~smith/" target="_top">Jan M. Smith</a>.
+<strong>Martin-Lof's Type Theory.</strong>
+(<a href="https://web.archive.org/web/20160426010223/ftp://ftp.cs.chalmers.se/pub/cs-reports/papers/smith/hlcs.ps.gz" target="_top">gzipped PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/users/lcp/" target="_top">Lawrence C. Paulson</a>.
+<strong>Foundations of Functional Programming.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/2000/FoundsCS/" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.cmu.edu/~fp/" target="_top">Frank Pfenning</a>.
+<strong>Automated Theorem Proving.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.cmu.edu/~fp/courses/atp/handouts.html" target="_top">link</a>)
+<p></p>
+--.
+<strong>Computation and Deduction.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.cmu.edu/~fp/courses/comp-ded/handouts.html" target="_top">link</a>)
+<p></p>
+Wesley Phoa.
+<strong>An introduction to fibrations, topos theory, the effective topos and modest sets.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.lfcs.informatics.ed.ac.uk/reports/92/ECS-LFCS-92-208/ECS-LFCS-92-208.ps.gz" target="_top">gzipped PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/~amp12/" target="_top">Andrew M. Pitts</a>.
+<strong>Lecture Notes on Types.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cl.cam.ac.uk/Teaching/2000/Types/" target="_top">link</a>)
+<p></p>
+--.
+<strong>Operational Semantics and Program Equivalence.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www-sop.inria.fr/oasis/Caminha00/opespe.ps" target="_top">PS</a>)
+<p></p>
+--.
+<strong>Categorical Logic.</strong>
+(<a href="https://web.archive.org/web/20160426010223/ftp://ftp.cl.cam.ac.uk/papers/amp12/catl.ps.gz" target="_top">gzipped PS</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.dcs.ed.ac.uk/home/gdp/" target="_top">Gordon Plotkin</a>.
+<strong>Pisa Notes (on Domain Theory).</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.dcs.ed.ac.uk/home/gdp/publications/" target="_top">link</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.dcs.ed.ac.uk/home/gdp/publications/Domains.ps.gz" target="_top">gzipped PS</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.dcs.ed.ac.uk/home/gdp/publications/Domains_a4.ps.gz" target="_top">gzipped PS/A4</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.disi.unige.it/person/RosoliniG" target="_top">Giuseppe Rosolini</a>.
+<strong>Sheaves.</strong>
+(gzipped PS:
+<a href="https://web.archive.org/web/20160426010223/http://jazz.pst.informatik.uni-muenchen.de/spring-school99/topos.ps.gz" target="_top">A4</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.pst.informatik.uni-muenchen.de/spring-school99/topos_l.ps.gz" target="_top">US</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.mathematik.uni-muenchen.de/~schwicht/" target="_top">Helmut Schwichtenberg</a>.
+<strong>Proof Theory.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.mathematik.uni-muenchen.de/~schwicht/lectures/proofth/ss99/pt99.ps.Z" target="_top">compressed PS</a>,
+<a href="https://web.archive.org/web/20160426010223/http://www.mathematik.uni-muenchen.de/~schwicht/lectures/proofth/ss99/pt99.dvi.Z" target="_top">compressed DVI</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.diku.dk/users/rambo/" target="_top">Morten Heine B. Sorenson</a> and <a href="https://web.archive.org/web/20160426010223/http://zls.mimuw.edu.pl/~urzy/home.html" target="_top">Pawel Urzyczyn</a>.
+<strong>Lectures on the Curry-Howard Isomorphism.</strong>
+(gzipped PS)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.mathematik.tu-darmstadt.de/~streicher/" target="_top">Thomas Streicher</a>.
+<strong>Fibred Categories.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.mathematik.tu-darmstadt.de/~streicher/FIBR/fib.ps.gz" target="_top">gzipped PS</a>)
+<p></p>
+<a name="OtherTexts"></a>
+<h1><a name="Other_texts"></a>  Other texts </h1>
+<p></p>
+Texts in this section are interesting, though not directly
+related to programming language theory.
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.umaine.edu/~chaitin" target="_top">G.J. Chaitin</a>.
+<strong>The Unknowable.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.cs.umaine.edu/~chaitin/unknowable/index.html" target="_top">link</a>)
+<p></p>
+<a href="https://web.archive.org/web/20160426010223/http://www-2.cs.cmu.edu/~koopman" target="_top">Philip J. Koopman, Jr.</a>
+<strong>Stack Computers: the new wave.</strong>
+(<a href="https://web.archive.org/web/20160426010223/http://www.mathematik.tu-darmstadt.de/~streicher/FIBR/fib.ps.gz" target="_top">link</a>)
+<p></p>
+<a name="MoreResources"></a>
+<h1><a name="Resources"></a>  Resources </h1>
+<p></p>
+If you are interested in these topics, you can find additional resources (mostly in the forms of technical articles and theses) via:
+<p></p> <ul>
+<li> <a href="https://web.archive.org/web/20160426010223/http://citeseer.nj.nec.com/cs" target="_top">NEC's CS ResearchIndex</a>
+</li> <li> Mark Leone's <a href="https://web.archive.org/web/20160426010223/http://www.cs.cmu.edu/~mleone/language-research.html" target="_top">Programming Language Research</a> page
+</li> <li> Mark Leone's <a href="https://web.archive.org/web/20160426010223/http://www.cs.cmu.edu/afs/cs.cmu.edu/user/mleone/web/language-people.html" target="_top">Researchers in Programming Languages and Compilers</a> page
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://www.afm.sbu.ac.uk/fm/" target="_top">WWW Virtual Library: Formal Methods</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://xxx.lanl.gov/archive/cs/intro.html" target="_top">Computing Research Repository (CoRR)</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://www.dcs.qmw.ac.uk/SEL-HPC/Articles/" target="_top">SEL-HPC</a> is inactive, but still occasionally useful.
+</li> <li> Indiana's <a href="https://web.archive.org/web/20160426010223/http://www.cs.indiana.edu:800/cstr/search" target="_top">Unified Computer Science TR Index (UCSTRI)</a>
+</li> <li> Cornell's <a href="https://web.archive.org/web/20160426010223/http://cs-tr.cs.cornell.edu/" target="_top">Networked Computer Science Technical Reference Library (NCSTRL)</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://liinwww.ira.uka.de/bibliography/index.html" target="_top">The Collection of Computer Science Bibliographies</a>
+</li> <li> CMU's <a href="https://web.archive.org/web/20160426010223/http://www.cs.cmu.edu/afs/cs.cmu.edu/user/jblythe/Mosaic/cs-reports.html" target="_top">On-line CS Techreports</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://cora.whizbang.com/" target="_top">Cora Research Paper Search</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://www.coalgebra.net/" target="_top">Coalgebra network online library</a>
+</li> <li> Paderborn's <a href="https://web.archive.org/web/20160426010223/http://www.uni-paderborn.de/fachbereich/AG/agmadh/WWW/english/scripts.html" target="_top">Collection of Lecture Notes, Surveys and Papers</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://www.md.chalmers.se/~rjmh" target="_top">John Hughes</a>' <a href="https://web.archive.org/web/20160426010223/http://www.md.chalmers.se/~rjmh/tutorials.html" target="_top">tutorial papers in functional programming</a>
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://www.google.com/" target="_top">Google</a> is a good search engine for technical topics.
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://lambda.weblogs.com/" target="_top">Lambda the Ultimate</a> is a weblog on programming languages. Amongst other things, it offers a list of <a href="https://web.archive.org/web/20160426010223/http://lambda.weblogs.com/design-docs" target="_top">language design</a> documents and <a href="https://web.archive.org/web/20160426010223/http://lambda.weblogs.com/papers" target="_top">research papers</a>.
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://lsi.uniovi.es/~labra/APL.html" target="_top">Advanced Programming Languages</a> (<a href="https://web.archive.org/web/20160426010223/http://lsi.uniovi.es/~labra" target="_top">Jose Emilio Labra Gayo</a>)
+</li> <li> a list of <a href="/web/20160426010223/http://foswiki.cs.uu.nl/foswiki/bin/view/Techno/ProgrammingLanguages">ProgrammingLanguages</a> on this server
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://hypatia.dcs.qmw.ac.uk/" target="_top">Hypatia</a> (broken)
+</li> <li> <a href="https://web.archive.org/web/20160426010223/http://readscheme.org/" target="_top">readscheme.org</a>
+</li></ul> 
+<p></p>
+<a name="SubmissionGuidelines"></a>
+<h1><a name="Submission_guidelines"></a>  Submission guidelines </h1>
+<p></p>
+Most importantly, any submission must include a URL to the full text of the
+manuscript: this is not an 
+<em>online list of texts</em>,
+but rather
+<em>a list of online texts</em>.
+Also, the text should be freely accessible; so, texts which belong to
+some sort of private digital library (like the ACM Digital Library or
+Elsevier's collection) are not admissible.
+<p></p>
+This list focuses on book-length reference works which treat major topics
+in programming language theory, mathematical semantics and foundations,
+particularly texts which have gone out of print. It would be nice if we could
+assemble a set of texts which are representative of a master's degree
+curriculum in programming language theory or computational mathematics.
+<p></p>
+On the other hand, do not dismiss interesting-looking material only
+because it is too short, or because it does not treat a central topic, or
+because it is too specific. If you know of something valuable which does not
+quite fit the guidelines above, consider putting it in the
+<a href="#OtherTexts" class="foswikiCurrentTopicLink">#OtherTexts</a> category.
+<p></p>
+Dissertations, theses and technical articles are not really suitable for this
+list, unless they provide an accessible (or: the unique) introduction to, or
+tutorial for, a relatively broad and/or important topic. Conversely, a survey
+would need to treat its topic in considerable depth to be included here.
+<p></p>
+Lecture notes and tutorials are acceptable, provided they are readable as
+self-contained manuscripts. Because there are so many manuscripts here of this
+type, please try to submit material which minimizes overlap with existing
+entries.
+<p></p>
+<h1><a name="Administration"></a>  Administration </h1>
+<p></p>
+This Wiki page is adapted from my (<a class="foswikiNewLink" href="/web/20160426010223/http://foswiki.cs.uu.nl/foswiki/bin/edit/Main/FrankAtanassow?topicparent=Techno.ProgrammingLanguageTheoryTextsOnline" rel="nofollow" title="Create this topic">FrankAtanassow</a>'s)
+<a href="https://web.archive.org/web/20160426010223/http://www.cs.uu.nl/~franka/ref" target="_top">PLT Online</a> page.
+<p></p>
+For now, both versions will coexist
+and I will probably add any updates to this page to my own page as well, and vice versa.
+If this Wiki version sees a lot of activity and takes off, and does not evolve too far
+from my original purpose (outlined in the
+<a href="#SubmissionGuidelines" class="foswikiCurrentTopicLink">#SubmissionGuidelines</a> above),
+then I may trash my page and redirect page views to this Wiki.
+<p></p>
+-- <a class="foswikiNewLink" href="/web/20160426010223/http://foswiki.cs.uu.nl/foswiki/bin/edit/Main/FrankAtanassow?topicparent=Techno.ProgrammingLanguageTheoryTextsOnline" rel="nofollow" title="Create this topic">FrankAtanassow</a> - 23 Sep 2002 </div>
